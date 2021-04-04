@@ -1,0 +1,31 @@
+.sort-section {
+  margin-top: 4vh;
+  padding: 1.7rem 2rem 1.7rem 2rem;
+  border-radius: 0.7rem;
+  background-color: #fff;
+
+  &__list {
+    display: flex;
+
+    &__item {
+      flex: 1;
+      text-align: center;
+
+      &:nth-child(1) {
+        text-align: left;
+        flex: 0.5;
+      }
+
+      &__button {
+        text-decoration: none;
+        font-size: 1rem;
+
+        // &::after {
+        //   font-family: "Font Awesome 5 Free";
+        //   font-weight: 900;
+        //   content: "\f0dc";
+        // }
+      }
+    }
+  }
+}

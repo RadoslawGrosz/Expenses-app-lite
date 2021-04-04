@@ -1,0 +1,111 @@
+.filters-section {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 2rem 3rem 2rem;
+  border-radius: 0.7rem;
+  background-color: #edd8dc;
+}
+
+.filters-section__title {
+  line-height: 4.5rem;
+  font-size: 1.3rem;
+  color: #f14b59;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.filters-section__filters-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 1;
+}
+
+.filters-section__filters-list__item {
+  min-width: 10rem;
+  width: 15%;
+  margin-right: 1rem;
+}
+
+.filters-section__filters-list__item__name {
+  line-height: 2rem;
+  font-size: 1rem;
+}
+
+.filters-section__filters-list__item__value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.filters-section__filters-list__item__value i {
+  width: auto;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.filters-section__filters-list__item__value__input {
+  background-color: rgba(0, 0, 0, 0);
+  width: 80%;
+  color: white;
+}
+
+.filters-section__filters-list__item__value::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
+}
+
+.filters-section__filters-list__item:nth-of-type(1) .filters-section__filters-list__item__value {
+  background-color: #5858ba;
+}
+
+.filters-section__filters-list__item:nth-of-type(2) .filters-section__filters-list__item__value {
+  background-color: #9fa3e0;
+}
+
+.filters-section__filters-list__item:nth-of-type(3) .filters-section__filters-list__item__value {
+  background-color: #f58c93;
+}
+
+.filters-section__filters-list__item:nth-of-type(3) .filters-section__filters-list__item__value__input {
+  width: 100%;
+  border: none;
+}
+
+.filters-section__filters-list__item:nth-of-type(3) .filters-section__filters-list__item__value__input option {
+  background-color: #f58c93;
+}
+
+.filters-section__filters-list__item:nth-of-type(4) .filters-section__filters-list__item__value {
+  background-color: #6f8efa;
+}
+
+.filters-section__info {
+  line-height: 4rem;
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.filters-section__image {
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+  height: 85%;
+}
+/*# sourceMappingURL=filtersSection.css.map */
