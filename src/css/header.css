@@ -5,7 +5,7 @@
 }
 
 .site-header__title {
-  font-size: 1.3rem;
+  font-size: 2rem;
   font-weight: bold;
   line-height: 7.5rem;
   letter-spacing: 0.1rem;
@@ -26,27 +26,43 @@
 }
 
 .site-header__list__item__link {
-  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 10vmin;
+  height: 4vmin;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  letter-spacing: 0.04rem;
   text-decoration: none;
-  color: #999;
+  color: #6e6eef;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
-.site-header__list__item__link--button {
-  padding: 0.6rem 1.5rem 0.6rem 1.5rem;
-  border-radius: 0.5rem;
+.site-header__list__item__link--add {
   background-color: #dbdbfb;
-  color: #6e6eef;
+}
+
+.site-header__list__item__link--add:hover {
+  color: white;
+  background-color: green;
 }
 
 .site-header__list__item__link--login {
-  padding: 0.6rem 1.5rem 0.6rem 1.5rem;
   -webkit-box-shadow: inset 0px 0px 0px 2px #6e6eef;
           box-shadow: inset 0px 0px 0px 2px #6e6eef;
-  border-radius: 0.5rem;
-  color: #6e6eef;
 }
 
-.site-header__list__item__link i {
-  margin-right: 0.5rem;
+.site-header__list__item__link--login:hover {
+  color: white;
+  background-color: #6e6eef;
 }
 /*# sourceMappingURL=header.css.map */
