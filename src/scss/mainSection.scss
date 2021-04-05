@@ -11,14 +11,16 @@
       position: relative;
 
       display: flex;
+      align-items: center;
+
       padding: 0 2rem 0 2rem;
       border-bottom: solid rgba($color: #000000, $alpha: 0.1) 0.05rem;
 
       &__value {
         flex: 1;
         text-align: center;
-        font-size: 1rem;
-        line-height: 4.4rem;
+        font-size: 1.1rem;
+        line-height: 8rem;
 
         &:nth-child(1) {
           flex: 0.5;
@@ -72,12 +74,68 @@
           }
         }
 
+        &--new {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &:nth-child(1) {
+            justify-content: flex-start;
+          }
+
+          &:nth-child(2) {
+            height: 50%;
+            padding: 0.5%;
+            border-bottom: green solid 2px;
+          }
+
+          &:nth-child(3) {
+            height: 2rem;
+            // border-right: green solid 2px;
+          }
+        }
+
+        &--image {
+          align-self: stretch;
+          background-image: url("https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png");
+          background-repeat: no-repeat;
+          background-position-x: center;
+          background-position-y: center;
+          // background-attachment: fixed;
+          background-size: contain;
+        }
+
+        &__input-file {
+          display: none;
+        }
+
+        &__label {
+          border: 1px solid #ccc;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 2rem;
+          padding: 6px 12px;
+          cursor: pointer;
+          transition: 0.2s;
+
+          &:hover {
+            color: #fff;
+            background-color: #f58c93;
+          }
+
+          &__icon {
+            margin-right: 1rem;
+          }
+        }
+
         &__status {
-          padding: 0.2rem 1rem;
+          padding: 0.6rem 0.6rem;
           border-radius: 0.5rem;
 
           color: #fff;
           background-color: red;
+          font-size: 1rem;
 
           cursor: pointer;
 

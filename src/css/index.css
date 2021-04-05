@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Roboto", sans-serif;
-  font-family: "Open Sans", sans-serif;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
@@ -17,6 +17,7 @@ input[type="number"]::-webkit-inner-spin-button {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100vw;
+  font-size: 10px;
 }
 
 body {

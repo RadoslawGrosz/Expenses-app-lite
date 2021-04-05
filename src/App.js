@@ -6,7 +6,7 @@ import FiltersSection from "./components/FiltersSection";
 import SortSection from "./components/SortSection";
 import MainSection from "./components/MainSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faFileUpload } from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
   const [isNewExpenseFormVisible, setIsNewExpenseFormVisible] = useState(false);
@@ -79,27 +79,49 @@ const App = () => {
 
   const newExpenseForm = (
     <form className="main-section__list__item" onSubmit={handleAddNewExpense}>
-      <p className="main-section__list__item__value">{expenses.length + 1}</p>
+      <p className="main-section__list__item__value main-section__list__item__value--new">
+        {expenses.length + 1}
+      </p>
       <input
         type="text"
-        className="main-section__list__item__value"
+        className="main-section__list__item__value main-section__list__item__value--new"
         value={newExpense.name}
         onChange={handleNewExpenseNameChange}
+        required={true}
+        placeholder="Nazwa transakcji..."
+        maxLength={25}
       />
       <input
         type="date"
-        className="main-section__list__item__value"
+        className="main-section__list__item__value main-section__list__item__value--new"
         value={newExpense.date}
         onChange={handleNewExpenseDateChange}
       />
       <input
         type="number"
-        className="main-section__list__item__value"
+        className="main-section__list__item__value main-section__list__item__value--new"
         value={newExpense.amount}
         onChange={handleNewExpenseAmountChange}
       />
-      <input type="file" className="main-section__list__item__value" />
-      <div className="main-section__list__item__value">
+      <div className="main-section__list__item__value main-section__list__item__value--new">
+        <input
+          type="file"
+          name="file"
+          id="file"
+          className="main-section__list__item__value__input-file"
+        />
+        <label
+          htmlFor="file"
+          className="main-section__list__item__value__label"
+        >
+          <FontAwesomeIcon
+            icon={faFileUpload}
+            className="main-section__list__item__value__label__icon"
+          />{" "}
+          Wybierz obrazek...
+        </label>
+      </div>
+      <div className="main-section__list__item__value main-section__list__item__value--new">
         <select
           name="status"
           className="main-section__list__item__value__status main-section__list__item__value__status--draft"

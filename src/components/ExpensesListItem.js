@@ -9,15 +9,17 @@ const ExpensesListItem = ({ expense }) => {
       <p className="main-section__list__item__value">{expense.name}</p>
       <p className="main-section__list__item__value">{expense.date}</p>
       <p className="main-section__list__item__value">{expense.amount}</p>
-      <p className="main-section__list__item__value">{expense.img}</p>
+      <div className="main-section__list__item__value main-section__list__item__value--image"></div>
+      {/* <img
+        src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
+        alt="Obrazek"
+        className="main-section__list__item__value main-section__list__item__value--image"
+      /> */}
       <div className="main-section__list__item__value">
         <select
           name="status"
           className="main-section__list__item__value__status main-section__list__item__value__status--draft"
         >
-          <option value="all" selected={expense.status === "Wszystkie"}>
-            Wszystkie
-          </option>
           <option value="paid" selected={expense.status === "Zapłacone"}>
             Zapłacone
           </option>

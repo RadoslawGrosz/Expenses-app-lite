@@ -15,10 +15,13 @@ const Header = ({ isNewExpenseFormVisible, setIsNewExpenseFormVisible }) => {
         <li className="site-header__list__item">
           <button
             href=""
-            className="site-header__list__item__link site-header__list__item__link--button"
+            className="site-header__list__item__link site-header__list__item__link--add"
             onClick={handleToggleForm}
           >
-            <FontAwesomeIcon icon={faPlusCircle} />
+            <FontAwesomeIcon
+              icon={faPlusCircle}
+              className="site-header__list__item__link__icon"
+            />
             Dodaj
           </button>
         </li>
