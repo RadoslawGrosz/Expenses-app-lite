@@ -4,13 +4,13 @@
   display: flex;
   flex-direction: column;
 
-  padding: 0 2rem 3rem 2rem;
+  padding: 0.5rem 2rem 5rem 2rem;
   border-radius: 0.7rem;
 
   background-color: #edd8dc;
 
   &__title {
-    line-height: 4.5rem;
+    line-height: 5rem;
     font-size: 1.8rem;
     color: #f14b59;
     font-weight: bold;
@@ -93,10 +93,6 @@
 
       &:nth-of-type(4) &__value {
         background-color: #6f8efa;
-
-        // &::after {
-        //   content: "\f002";
-        // }
       }
     }
   }

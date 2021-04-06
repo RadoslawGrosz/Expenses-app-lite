@@ -27,12 +27,14 @@
 }
 
 .main-section__list__item__value {
+  position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   text-align: center;
   font-size: 1.1rem;
   line-height: 8rem;
+  overflow: hidden;
 }
 
 .main-section__list__item__value:nth-child(1) {
@@ -112,11 +114,31 @@
   height: 2rem;
 }
 
+.main-section__list__item__value--file-container {
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+}
+
 .main-section__list__item__value--image {
   -ms-flex-item-align: stretch;
       -ms-grid-row-align: stretch;
       align-self: stretch;
-  background-image: url("https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: contain;
+}
+
+.main-section__list__item__value__image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: center;
@@ -128,7 +150,7 @@
 }
 
 .main-section__list__item__value__label {
-  border: 1px solid #ccc;
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -140,9 +162,13 @@
           align-items: center;
   height: 2rem;
   padding: 6px 12px;
+  border: 1px solid #ccc;
+  background-color: #5858ba;
+  color: #fff;
   cursor: pointer;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  z-index: 2;
 }
 
 .main-section__list__item__value__label:hover {
@@ -157,6 +183,7 @@
 .main-section__list__item__value__status {
   padding: 0.6rem 0.6rem;
   border-radius: 0.5rem;
+  border: none;
   color: #fff;
   background-color: red;
   font-size: 1rem;

@@ -2,10 +2,15 @@ import { React } from "react";
 import "../css/mainSection.css";
 import ExpensesList from "./ExpensesList";
 
-const MainSection = ({ expenses, children }) => {
+const MainSection = ({ expenses, handleRemoveExpense, children }) => {
   return (
     <section className="main-section">
-      <ExpensesList expenses={expenses}>{children}</ExpensesList>
+      <ExpensesList
+        expenses={expenses}
+        handleRemoveExpense={handleRemoveExpense}
+      >
+        {children}
+      </ExpensesList>
     </section>
   );
 };

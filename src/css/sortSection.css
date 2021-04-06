@@ -1,14 +1,33 @@
 .sort-section {
   margin-top: 4vh;
-  padding: 1.7rem 2rem 1.7rem 2rem;
+  padding: 0 2rem;
   border-radius: 0.7rem;
   background-color: #fff;
+}
+
+.sort-section__button {
+  background-color: transparent;
+  padding: 0 1rem 0 0;
+  border: none;
+  font-size: 2.4rem;
+  line-height: 4.2rem;
+  color: #5858ba;
+  cursor: pointer;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.sort-section__button:hover {
+  -webkit-transform: translateX(-0.5rem);
+          transform: translateX(-0.5rem);
+  color: #6f8efa;
 }
 
 .sort-section__list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
 }
 
 .sort-section__list__item {
@@ -28,5 +47,6 @@
 .sort-section__list__item__button {
   text-decoration: none;
   font-size: 1.2rem;
+  line-height: 4.2rem;
 }
 /*# sourceMappingURL=sortSection.css.map */

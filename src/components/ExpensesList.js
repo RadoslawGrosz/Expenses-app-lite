@@ -1,11 +1,14 @@
 import { React } from "react";
 import ExpensesListItem from "./ExpensesListItem";
 
-const ExpensesList = ({ expenses, children }) => {
+const ExpensesList = ({ expenses, handleRemoveExpense, children }) => {
   return (
     <ul className="main-section__list">
       {expenses.map((expense) => (
-        <ExpensesListItem expense={expense} />
+        <ExpensesListItem
+          expense={expense}
+          handleRemoveExpense={handleRemoveExpense}
+        />
       ))}
       {children}
     </ul>

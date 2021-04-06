@@ -22,12 +22,12 @@
         align-items: center;
         justify-content: space-around;
 
-        width: 10vmin;
         height: 4vmin;
         border-radius: 0.5rem;
-        text-transform: uppercase;
+        padding: 0 1.2rem;
 
-        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-size: 1.2rem;
         letter-spacing: 0.04rem;
         text-decoration: none;
         color: #6e6eef;
@@ -37,19 +37,31 @@
 
         &--add {
           background-color: #dbdbfb;
+          border: none;
 
           &:hover {
             color: white;
-            background-color: green;
+            background-color: #6f8efa;
           }
         }
 
         &--login {
-          box-shadow: inset 0px 0px 0px 2px #6e6eef;
+          background-color: transparent;
+          border: none;
+          padding: 0;
 
           &:hover {
-            color: white;
-            background-color: #6e6eef;
+            color: #f58c93;
+          }
+        }
+
+        &__icon {
+          &--add {
+            margin-right: 0.5rem;
+          }
+
+          &--login {
+            font-size: 2.2rem;
           }
         }
       }

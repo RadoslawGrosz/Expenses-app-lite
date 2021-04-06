@@ -1,7 +1,7 @@
 import { React } from "react";
 import "../css/header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Header = ({ isNewExpenseFormVisible, setIsNewExpenseFormVisible }) => {
   const handleToggleForm = () => {
@@ -20,14 +20,17 @@ const Header = ({ isNewExpenseFormVisible, setIsNewExpenseFormVisible }) => {
           >
             <FontAwesomeIcon
               icon={faPlusCircle}
-              className="site-header__list__item__link__icon"
+              className="site-header__list__item__link__icon site-header__list__item__link__icon--add"
             />
             Dodaj
           </button>
         </li>
         <li className="site-header__list__item">
           <button className="site-header__list__item__link site-header__list__item__link--login">
-            Zaloguj
+            <FontAwesomeIcon
+              icon={faSignInAlt}
+              className="site-header__list__item__link__icon site-header__list__item__link__icon--login"
+            />
           </button>
         </li>
       </ul>
