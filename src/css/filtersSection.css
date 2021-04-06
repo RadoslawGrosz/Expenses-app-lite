@@ -7,13 +7,13 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 0 2rem 3rem 2rem;
+  padding: 0.5rem 2rem 5rem 2rem;
   border-radius: 0.7rem;
   background-color: #edd8dc;
 }
 
 .filters-section__title {
-  line-height: 4.5rem;
+  line-height: 5rem;
   font-size: 1.8rem;
   color: #f14b59;
   font-weight: bold;

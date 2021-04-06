@@ -1,20 +1,27 @@
 import { React } from "react";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const ExpensesListItem = ({ expense }) => {
+const ExpensesListItem = ({ expense, handleRemoveExpense }) => {
+  const history = useHistory();
+  const { id, name, date, amount, img } = expense;
+
+  const stylesImage = {
+    backgroundImage: `url(${img})`,
+  };
+
   return (
     <li className="main-section__list__item">
-      <p className="main-section__list__item__value">{expense.id}</p>
-      <p className="main-section__list__item__value">{expense.name}</p>
-      <p className="main-section__list__item__value">{expense.date}</p>
-      <p className="main-section__list__item__value">{expense.amount}</p>
-      <div className="main-section__list__item__value main-section__list__item__value--image"></div>
-      {/* <img
-        src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
-        alt="Obrazek"
+      <p className="main-section__list__item__value">{id}</p>
+      <p className="main-section__list__item__value">{name}</p>
+      <p className="main-section__list__item__value">{date}</p>
+      <p className="main-section__list__item__value">{amount}</p>
+      <div
         className="main-section__list__item__value main-section__list__item__value--image"
-      /> */}
+        onClick={() => history.push(`/${id}`)}
+        style={stylesImage}
+      ></div>
       <div className="main-section__list__item__value">
         <select
           name="status"
@@ -31,7 +38,10 @@ const ExpensesListItem = ({ expense }) => {
           </option>
         </select>
       </div>
-      <button className="main-section__list__item__value main-section__list__item__value--remove">
+      <button
+        className="main-section__list__item__value main-section__list__item__value--remove"
+        onClick={() => handleRemoveExpense(id)}
+      >
         <FontAwesomeIcon icon={faTrash} />
       </button>
     </li>

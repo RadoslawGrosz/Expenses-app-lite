@@ -17,10 +17,13 @@
       border-bottom: solid rgba($color: #000000, $alpha: 0.1) 0.05rem;
 
       &__value {
+        position: relative;
+
         flex: 1;
         text-align: center;
         font-size: 1.1rem;
         line-height: 8rem;
+        overflow: hidden;
 
         &:nth-child(1) {
           flex: 0.5;
@@ -95,9 +98,30 @@
           }
         }
 
+        &--file-container {
+          align-self: stretch;
+        }
+
         &--image {
           align-self: stretch;
-          background-image: url("https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png");
+          // background-image: url("https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png");
+          background-repeat: no-repeat;
+          background-position-x: center;
+          background-position-y: center;
+          // background-attachment: fixed;
+          background-size: contain;
+        }
+
+        &__image {
+          position: absolute;
+
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+
+          align-self: stretch;
+          // background-image: url("https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png");
           background-repeat: no-repeat;
           background-position-x: center;
           background-position-y: center;
@@ -110,14 +134,19 @@
         }
 
         &__label {
-          border: 1px solid #ccc;
           display: flex;
           justify-content: center;
           align-items: center;
+
           height: 2rem;
           padding: 6px 12px;
+          border: 1px solid #ccc;
+
+          background-color: #5858ba;
+          color: #fff;
           cursor: pointer;
           transition: 0.2s;
+          z-index: 2;
 
           &:hover {
             color: #fff;
@@ -132,6 +161,7 @@
         &__status {
           padding: 0.6rem 0.6rem;
           border-radius: 0.5rem;
+          border: none;
 
           color: #fff;
           background-color: red;
