@@ -2,6 +2,8 @@ import { React, useEffect, useState } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
 import "./css/reset.css";
 import "./css/index.css";
+import img from "./img/phone-transparent.png";
+import moneyImg from "./img/money-transparent.png";
 import Header from "./components/Header";
 import FiltersSection from "./components/FiltersSection";
 import SortSection from "./components/SortSection";
@@ -14,6 +16,7 @@ const App = () => {
   const [isNewExpenseFormVisible, setIsNewExpenseFormVisible] = useState(false);
   const { id } = useParams();
   const [stylesImage, setStylesImage] = useState({});
+  const [stylesBgcImage, setStylesBgcImage] = useState({});
 
   const [expenses, setExpenses] = useState([
     {
@@ -21,8 +24,9 @@ const App = () => {
       name: "Zakup telefonu",
       date: "2019-02-19",
       amount: "1200",
-      img:
-        "https://f01.osfr.pl/foto/1/22317618657/3f2894363f71385f0253be1cf1642187/apple-iphone-x-64gb-gwiezdna-szarosc,22317618657_8.jpg",
+      // img:
+      //   "https://f01.osfr.pl/foto/1/22317618657/3f2894363f71385f0253be1cf1642187/apple-iphone-x-64gb-gwiezdna-szarosc,22317618657_8.jpg",
+      img,
       status: "paid",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
@@ -51,6 +55,12 @@ const App = () => {
   useEffect(() => {
     setStylesImage(() => ({
       backgroundImage: `url(${newExpense.img})`,
+    }));
+  }, [newExpense]);
+
+  useEffect(() => {
+    setStylesBgcImage(() => ({
+      backgroundImage: `${moneyImg}`,
     }));
   }, [newExpense]);
 
@@ -223,6 +233,12 @@ const App = () => {
           )}
         />
       </Switch>
+      <img src={moneyImg} alt="money" className="main-content__img" />
+      <img
+        src={moneyImg}
+        alt="money"
+        className="main-content__img main-content__img--left"
+      />
     </main>
   );
 };

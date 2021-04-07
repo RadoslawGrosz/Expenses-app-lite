@@ -75,6 +75,11 @@
 
       padding: 0 2rem 0 2rem;
       border-bottom: solid rgba($color: #000000, $alpha: 0.1) 0.05rem;
+      // background-color: #;
+
+      &:nth-child(even) {
+        background-color: #f2f2f2;
+      }
 
       &__value {
         position: relative;
@@ -84,6 +89,7 @@
         font-size: 1.1rem;
         line-height: 8rem;
         overflow: hidden;
+        background-color: transparent;
 
         &:nth-child(1) {
           flex: 0.5;
