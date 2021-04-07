@@ -83,6 +83,10 @@
   border-bottom: solid rgba(0, 0, 0, 0.1) 0.05rem;
 }
 
+.main-section__list__item:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 .main-section__list__item__value {
   position: relative;
   -webkit-box-flex: 1;
@@ -92,6 +96,7 @@
   font-size: 1.1rem;
   line-height: 8rem;
   overflow: hidden;
+  background-color: transparent;
 }
 
 .main-section__list__item__value:nth-child(1) {

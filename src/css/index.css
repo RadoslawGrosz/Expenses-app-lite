@@ -27,6 +27,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  overflow-x: hidden;
   min-height: 100vh;
   font-size: 10px;
   background-color: #f5f5fd;
@@ -45,5 +46,19 @@ body {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+}
+
+.main-content__img {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 85%;
+  z-index: -1;
+  height: 100vh;
+}
+
+.main-content__img--left {
+  left: auto;
+  right: 85%;
 }
 /*# sourceMappingURL=index.css.map */
