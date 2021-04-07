@@ -19,20 +19,24 @@ const App = () => {
     {
       id: 1,
       name: "Zakup telefonu",
-      date: "5.11.2019",
+      date: "2019-02-19",
       amount: "1200",
       img:
-        "https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png",
-      status: "Częsciowo zapłacone",
+        "https://f01.osfr.pl/foto/1/22317618657/3f2894363f71385f0253be1cf1642187/apple-iphone-x-64gb-gwiezdna-szarosc,22317618657_8.jpg",
+      status: "paid",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
     },
     {
       id: 2,
       name: "Zakup samochodu",
-      date: "15.12.2020",
+      date: "2020-12-02",
       amount: "85000",
       img:
-        "https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png",
-      status: "Wszystkie",
+        "https://www.autoremo.pl/wp-content/uploads/2019/07/20190703_012.jpg",
+      status: "partly-paid",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum leo ac posuere lacinia. Sed rutrum tempus velit, vel auctor risus tempor id. Etiam vel felis facilisis, hendrerit nunc sit amet, mattis eros. Mauris tristique, nibh nec vestibulum iaculis, turpis augue bibendum est, nec ultrices risus felis eget diam. Maecenas non scelerisque nisi, non tincidunt eros. Fusce pellentesque sit amet mauris nec aliquet. Donec leo ex, interdum ornare vulputate a, sagittis eget lorem.",
     },
   ]);
 
@@ -41,7 +45,7 @@ const App = () => {
     date: "",
     amount: 0,
     img: "",
-    status: "Zapłacone",
+    status: "paid",
   });
 
   useEffect(() => {
@@ -72,6 +76,7 @@ const App = () => {
   };
 
   const handleNewExpenseStatusChange = (e) => {
+    console.log(e.target.value);
     setNewExpense((prev) => ({
       ...prev,
       status: e.target.value,
@@ -106,6 +111,13 @@ const App = () => {
       },
     ]);
     setIsNewExpenseFormVisible(false);
+    setNewExpense({
+      name: "",
+      date: "",
+      amount: 0,
+      img: "",
+      status: "paid",
+    });
   };
 
   const newExpenseForm = (
@@ -127,6 +139,7 @@ const App = () => {
         className="main-section__list__item__value main-section__list__item__value--new"
         value={newExpense.date}
         onChange={handleNewExpenseDateChange}
+        required
       />
       <input
         type="number"

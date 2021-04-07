@@ -1,7 +1,63 @@
+@charset "UTF-8";
 .main-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   margin-top: 4vh;
   border-radius: 0.7rem;
   background-color: #fff;
+}
+
+.main-section__image {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: contain;
+}
+
+.main-section__info {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 2%;
+}
+
+.main-section__info__text {
+  padding: 1.5%;
+  font-size: 1.5rem;
+}
+
+.main-section__info__text--amount::after {
+  content: " zł";
+}
+
+.main-section__info__status__value {
+  padding: 0.6rem 0.6rem;
+  border-radius: 0.5rem;
+  border: none;
+  color: #fff;
+  background-color: red;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.main-section__info__desc-container {
+  padding-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.main-section__info__desc-container__title {
+  margin-bottom: 0.5rem;
+}
+
+.main-section__info__desc-container__description {
+  font-size: 1.2rem;
 }
 
 .main-section__list {
@@ -12,6 +68,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 100%;
 }
 
 .main-section__list__item {
@@ -54,6 +111,10 @@
 
 .main-section__list__item__value:nth-child(5), .main-section__list__item__value:nth-child(6) {
   color: #f58c93;
+}
+
+.main-section__list__item__value--amount::after {
+  content: " zł";
 }
 
 .main-section__list__item__value--remove {
@@ -105,7 +166,7 @@
 }
 
 .main-section__list__item__value--new:nth-child(2) {
-  height: 50%;
+  height: 30%;
   padding: 0.5%;
   border-bottom: green solid 2px;
 }
@@ -128,6 +189,16 @@
   background-position-x: center;
   background-position-y: center;
   background-size: contain;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.main-section__list__item__value--image:hover {
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  z-index: 3;
 }
 
 .main-section__list__item__value__image {

@@ -1,11 +1,71 @@
 .main-section {
+  display: flex;
+
   margin-top: 4vh;
   border-radius: 0.7rem;
   background-color: #fff;
 
+  &__image {
+    flex: 1;
+
+    align-self: stretch;
+    // background-image: url("https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    // background-attachment: fixed;
+    background-size: contain;
+    // width: 500;
+  }
+
+  &__info {
+    flex: 1;
+    padding: 2%;
+
+    &__text {
+      padding: 1.5%;
+      font-size: 1.5rem;
+
+      &--amount {
+        &::after {
+          content: " zł";
+        }
+      }
+    }
+
+    &__status {
+      &__value {
+        padding: 0.6rem 0.6rem;
+        border-radius: 0.5rem;
+        border: none;
+
+        color: #fff;
+        background-color: red;
+        font-size: 1rem;
+
+        cursor: pointer;
+      }
+    }
+
+    &__desc-container {
+      padding-top: 2rem;
+      font-size: 1.5rem;
+
+      &__title {
+        margin-bottom: 0.5rem;
+      }
+
+      &__description {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
+
+    width: 100%;
 
     &__item {
       position: relative;
@@ -43,6 +103,12 @@
         &:nth-child(5),
         &:nth-child(6) {
           color: #f58c93;
+        }
+
+        &--amount {
+          &::after {
+            content: " zł";
+          }
         }
 
         &--remove {
@@ -87,14 +153,13 @@
           }
 
           &:nth-child(2) {
-            height: 50%;
+            height: 30%;
             padding: 0.5%;
             border-bottom: green solid 2px;
           }
 
           &:nth-child(3) {
             height: 2rem;
-            // border-right: green solid 2px;
           }
         }
 
@@ -110,6 +175,15 @@
           background-position-y: center;
           // background-attachment: fixed;
           background-size: contain;
+
+          transition: 0.3s;
+          cursor: pointer;
+          z-index: 2;
+
+          &:hover {
+            transform: scale(2);
+            z-index: 3;
+          }
         }
 
         &__image {
