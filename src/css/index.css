@@ -55,6 +55,7 @@ body {
   left: 85%;
   z-index: -1;
   height: 100vh;
+  opacity: 0.4;
 }
 
 .main-content__img--left {

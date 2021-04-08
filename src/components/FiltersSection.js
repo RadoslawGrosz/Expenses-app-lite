@@ -3,7 +3,35 @@ import "../css/filtersSection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign, faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const FiltersSection = () => {
+const FiltersSection = ({ setFilters }) => {
+  const handleMinAmountFilterChange = (e) => {
+    setFilters((prev) => ({
+      ...prev,
+      minAmount: e.target.value,
+    }));
+  };
+
+  const handleMaxAmountFilterChange = (e) => {
+    setFilters((prev) => ({
+      ...prev,
+      maxAmount: e.target.value,
+    }));
+  };
+
+  const handleStatusFilterChange = (e) => {
+    setFilters((prev) => ({
+      ...prev,
+      status: e.target.value,
+    }));
+  };
+
+  const handleNameFilterChange = (e) => {
+    setFilters((prev) => ({
+      ...prev,
+      name: e.target.value,
+    }));
+  };
+
   return (
     <section className="filters-section">
       <h2 className="filters-section__title">Filtry</h2>
@@ -16,6 +44,7 @@ const FiltersSection = () => {
             <input
               type="number"
               className="filters-section__filters-list__item__value__input"
+              onChange={handleMinAmountFilterChange}
             />
             <FontAwesomeIcon icon={faDollarSign} />
           </div>
@@ -28,6 +57,7 @@ const FiltersSection = () => {
             <input
               type="number"
               className="filters-section__filters-list__item__value__input"
+              onChange={handleMaxAmountFilterChange}
             />
             <FontAwesomeIcon icon={faDollarSign} />
           </div>
@@ -43,6 +73,7 @@ const FiltersSection = () => {
             <select
               name="status"
               className="filters-section__filters-list__item__value__input"
+              onChange={handleStatusFilterChange}
             >
               <option value="all">Wszystkie</option>
               <option value="paid">Zapłacone</option>
@@ -58,6 +89,7 @@ const FiltersSection = () => {
             <input
               type="text"
               className="filters-section__filters-list__item__value__input"
+              onChange={handleNameFilterChange}
             />
             <FontAwesomeIcon icon={faSearch} />
           </div>

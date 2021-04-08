@@ -15,17 +15,21 @@ import { faCheck, faFileUpload } from "@fortawesome/free-solid-svg-icons";
 const App = () => {
   const [isNewExpenseFormVisible, setIsNewExpenseFormVisible] = useState(false);
   const { id } = useParams();
-  const [stylesImage, setStylesImage] = useState({});
-  const [stylesBgcImage, setStylesBgcImage] = useState({});
+  const [newExpenseImage, setNewExpenseImage] = useState({});
+  const [expensesToShow, setExpensesToShow] = useState({});
+  const [filters, setFilters] = useState({
+    minAmount: "",
+    maxAmount: "",
+    status: "all",
+    name: "",
+  });
 
   const [expenses, setExpenses] = useState([
     {
       id: 1,
       name: "Zakup telefonu",
       date: "2019-02-19",
-      amount: "1200",
-      // img:
-      //   "https://f01.osfr.pl/foto/1/22317618657/3f2894363f71385f0253be1cf1642187/apple-iphone-x-64gb-gwiezdna-szarosc,22317618657_8.jpg",
+      amount: 1200,
       img,
       status: "paid",
       description:
@@ -35,7 +39,7 @@ const App = () => {
       id: 2,
       name: "Zakup samochodu",
       date: "2020-12-02",
-      amount: "85000",
+      amount: 85000,
       img:
         "https://www.autoremo.pl/wp-content/uploads/2019/07/20190703_012.jpg",
       status: "partly-paid",
@@ -53,16 +57,27 @@ const App = () => {
   });
 
   useEffect(() => {
-    setStylesImage(() => ({
+    setNewExpenseImage(() => ({
       backgroundImage: `url(${newExpense.img})`,
     }));
   }, [newExpense]);
 
   useEffect(() => {
-    setStylesBgcImage(() => ({
-      backgroundImage: `${moneyImg}`,
-    }));
-  }, [newExpense]);
+    setExpensesToShow(() =>
+      expenses.filter((expense) => {
+        const minAmount =
+          !filters.minAmount || expense.amount >= filters.minAmount;
+        const maxAmount =
+          !filters.maxAmount || expense.amount <= filters.maxAmount;
+        const status =
+          filters.status === "all" || expense.status === filters.status;
+        const name = expense.name
+          .toUpperCase()
+          .includes(filters.name.toUpperCase());
+        return minAmount && maxAmount && status && name;
+      })
+    );
+  }, [filters, expenses]);
 
   const handleNewExpenseNameChange = (e) => {
     setNewExpense((prev) => ({
@@ -165,9 +180,9 @@ const App = () => {
           className="main-section__list__item__value__input-file"
           onChange={handleImageChoose}
         />
-        {stylesImage.backgroundImage && (
+        {newExpenseImage.backgroundImage && (
           <div
-            style={stylesImage}
+            style={newExpenseImage}
             alt=""
             className="main-section__list__item__value__image"
           ></div>
@@ -209,7 +224,7 @@ const App = () => {
         isNewExpenseFormVisible={isNewExpenseFormVisible}
         setIsNewExpenseFormVisible={setIsNewExpenseFormVisible}
       />
-      <FiltersSection />
+      <FiltersSection setFilters={setFilters} />
       <Switch>
         <Route
           path="/"
@@ -218,7 +233,7 @@ const App = () => {
             <>
               <SortSection />
               <MainSection
-                expenses={expenses}
+                expenses={expensesToShow}
                 handleRemoveExpense={handleRemoveExpense}
               >
                 {isNewExpenseFormVisible && newExpenseForm}
