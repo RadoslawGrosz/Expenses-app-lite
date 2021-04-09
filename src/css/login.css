@@ -1,0 +1,66 @@
+.login-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.login-form__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 20vh;
+  border-radius: 0.5rem;
+  background-color: #5858ba;
+}
+
+.login-form__form__title {
+  font-size: 2rem;
+  line-height: 5rem;
+  color: #fff;
+}
+
+.login-form__form__input {
+  padding: 0.5rem;
+  margin: 1rem 4.5vw;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+.login-form__form__button {
+  padding: 0.5rem 1.8rem;
+  margin: 1rem 0 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  background-color: #dbdbfb;
+  color: #5858ba;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.login-form__form__button:hover {
+  color: white;
+  background-color: #6f8efa;
+}
+/*# sourceMappingURL=login.css.map */

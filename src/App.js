@@ -9,6 +9,8 @@ import FiltersSection from "./components/FiltersSection";
 import SortSection from "./components/SortSection";
 import MainSection from "./components/MainSection";
 import Expense from "./components/Expense";
+import Login from "./components/Login";
+import AuthenticationService from "./security/AuthenticationService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faFileUpload } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,7 +18,16 @@ const App = () => {
   const [isNewExpenseFormVisible, setIsNewExpenseFormVisible] = useState(false);
   const { id } = useParams();
   const [newExpenseImage, setNewExpenseImage] = useState({});
-  const [expensesToShow, setExpensesToShow] = useState({});
+  const [expensesToShow, setExpensesToShow] = useState([]);
+  const [sortedExpensesToShow, setSortedExpensesToShow] = useState([]);
+  const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
+  const [user, setUser] = useState({});
+
+  const [sort, setSort] = useState({
+    by: "id",
+    desc: true,
+  });
+
   const [filters, setFilters] = useState({
     minAmount: "",
     maxAmount: "",
@@ -26,7 +37,7 @@ const App = () => {
 
   const [expenses, setExpenses] = useState([
     {
-      id: 1,
+      id: 10,
       name: "Zakup telefonu",
       date: "2019-02-19",
       amount: 1200,
@@ -46,9 +57,40 @@ const App = () => {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum leo ac posuere lacinia. Sed rutrum tempus velit, vel auctor risus tempor id. Etiam vel felis facilisis, hendrerit nunc sit amet, mattis eros. Mauris tristique, nibh nec vestibulum iaculis, turpis augue bibendum est, nec ultrices risus felis eget diam. Maecenas non scelerisque nisi, non tincidunt eros. Fusce pellentesque sit amet mauris nec aliquet. Donec leo ex, interdum ornare vulputate a, sagittis eget lorem.",
     },
+    {
+      id: 3,
+      name: "a",
+      date: "2018-02-19",
+      amount: 2200,
+      img,
+      status: "paid",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+    },
+    {
+      id: 4,
+      name: "b",
+      date: "2017-02-19",
+      amount: 3200,
+      img,
+      status: "paid",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+    },
+    {
+      id: 5,
+      name: "c",
+      date: "2016-02-19",
+      amount: 4200,
+      img,
+      status: "paid",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+    },
   ]);
 
   const [newExpense, setNewExpense] = useState({
+    id: expenses.length + 1,
     name: "",
     date: "",
     amount: 0,
@@ -57,10 +99,52 @@ const App = () => {
   });
 
   useEffect(() => {
+    const handleUserAuthentication = async () => {
+      if (AuthenticationService.isUserLoggedIn()) {
+        const loggedUser = await AuthenticationService.logIn();
+        if (loggedUser.username) {
+          setUser(loggedUser);
+        } else {
+          sessionStorage.clear("token");
+        }
+      } else {
+        setUser({});
+      }
+
+      // setIsPending(false);
+    };
+    handleUserAuthentication();
+  }, []);
+
+  useEffect(() => {
     setNewExpenseImage(() => ({
       backgroundImage: `url(${newExpense.img})`,
     }));
   }, [newExpense]);
+
+  useEffect(() => {
+    // const sorted = [...expensesToShow].sort(
+    //   (a, b) => {
+    //     if (a[sort.by] - b[sort.by]) return -1;
+    //     if (b[sort.by] - a[sort.by]) return 1;
+    //     return 0;
+    //   }
+    //   // sort.desc ? a[sort.by] - b[sort.by] : b[sort.by] - a[sort.by]
+    // );
+
+    setSortedExpensesToShow(
+      [...expensesToShow].sort(
+        (a, b) =>
+          // {
+          //   if (a[sort.by] - b[sort.by]) return -1;
+          //   if (b[sort.by] - a[sort.by]) return 1;
+          //   return 0;
+          // }
+          sort.desc ? a[sort.by] - b[sort.by] : b[sort.by] - a[sort.by]
+        // a[sort.by].localeCompare(b[sort.by])
+      )
+    );
+  }, [sort, expensesToShow]);
 
   useEffect(() => {
     setExpensesToShow(() =>
@@ -78,6 +162,29 @@ const App = () => {
       })
     );
   }, [filters, expenses]);
+
+  const handleExpenseEdit = (id, status, description) => {
+    setExpenses((prev) => {
+      // const tempExpense = prev.find((expense) => expense.id === id);
+      // tempExpense.status = status;
+      // tempExpense.description = description;
+      prev.forEach((expense) => {
+        if (expense.id === id) {
+          if (status) expense.status = status;
+          if (description) expense.description = description;
+        }
+      });
+      console.log(prev);
+      return prev;
+    });
+  };
+
+  const handleSortProperyChange = (type) => {
+    setSort((prev) => ({
+      by: type,
+      desc: prev.by === type ? !prev.desc : true,
+    }));
+  };
 
   const handleNewExpenseNameChange = (e) => {
     setNewExpense((prev) => ({
@@ -101,7 +208,6 @@ const App = () => {
   };
 
   const handleNewExpenseStatusChange = (e) => {
-    console.log(e.target.value);
     setNewExpense((prev) => ({
       ...prev,
       status: e.target.value,
@@ -137,6 +243,7 @@ const App = () => {
     ]);
     setIsNewExpenseFormVisible(false);
     setNewExpense({
+      id: expenses.length + 1,
       name: "",
       date: "",
       amount: 0,
@@ -223,37 +330,58 @@ const App = () => {
       <Header
         isNewExpenseFormVisible={isNewExpenseFormVisible}
         setIsNewExpenseFormVisible={setIsNewExpenseFormVisible}
+        setIsLoginFormVisible={setIsLoginFormVisible}
+        user={user}
+        setUser={setUser}
       />
+
       <FiltersSection setFilters={setFilters} />
-      <Switch>
-        <Route
-          path="/"
-          exact
-          render={() => (
-            <>
-              <SortSection />
-              <MainSection
-                expenses={expensesToShow}
-                handleRemoveExpense={handleRemoveExpense}
-              >
-                {isNewExpenseFormVisible && newExpenseForm}
-              </MainSection>
-            </>
-          )}
-        />
-        <Route
-          path="/:id"
-          render={() => (
-            <Expense expense={expenses.find((expense) => expense.id == id)} />
-          )}
-        />
-      </Switch>
+      {user.id ? (
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <>
+                <SortSection
+                  handleSortProperyChange={handleSortProperyChange}
+                />
+                <MainSection
+                  expenses={sortedExpensesToShow}
+                  handleRemoveExpense={handleRemoveExpense}
+                  handleExpenseEdit={handleExpenseEdit}
+                >
+                  {isNewExpenseFormVisible && newExpenseForm}
+                </MainSection>
+              </>
+            )}
+          />
+          <Route
+            path="/:id"
+            render={() => (
+              <Expense
+                expense={expenses.find((expense) => expense.id == id)}
+                setExpenses={setExpenses}
+                handleExpenseEdit={handleExpenseEdit}
+              />
+            )}
+          />
+        </Switch>
+      ) : (
+        <SortSection handleSortProperyChange={handleSortProperyChange} />
+      )}
       <img src={moneyImg} alt="money" className="main-content__img" />
       <img
         src={moneyImg}
         alt="money"
         className="main-content__img main-content__img--left"
       />
+      {isLoginFormVisible && !user.id && (
+        <Login
+          setUser={setUser}
+          setIsLoginFormVisible={setIsLoginFormVisible}
+        />
+      )}
     </main>
   );
 };
