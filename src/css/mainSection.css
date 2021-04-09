@@ -48,6 +48,10 @@
 }
 
 .main-section__info__desc-container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding-top: 2rem;
   font-size: 1.5rem;
 }
@@ -57,7 +61,20 @@
 }
 
 .main-section__info__desc-container__description {
+  resize: none;
+  overflow: hidden;
   font-size: 1.2rem;
+  height: 13rem;
+  width: 100%;
+}
+
+.main-section__info__desc-container__submit {
+  padding: 0.3rem 0;
+  width: 100%;
+  background-color: #6f8efa;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
 }
 
 .main-section__list {

@@ -3,20 +3,41 @@ import "../css/sortSection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort } from "@fortawesome/free-solid-svg-icons";
 
-const SortSection = () => {
-  const listItemNames = [
-    "Lp.",
-    "Nazwa transakcji",
-    "Data",
-    "Kwota",
-    "Obrazek",
-    "Status",
+const SortSection = ({ handleSortProperyChange }) => {
+  const listItemsProperties = [
+    {
+      name: "Lp.",
+      value: "id",
+    },
+    {
+      name: "Nazwa transakcji",
+      value: "name",
+    },
+    {
+      name: "Data",
+      value: "date",
+    },
+    {
+      name: "Kwota",
+      value: "amount",
+    },
+    {
+      name: "Obrazek",
+      value: "image",
+    },
+    {
+      name: "Status",
+      value: "status",
+    },
   ];
 
-  const listItems = listItemNames.map((name) => (
-    <li className="sort-section__list__item">
-      <p className="sort-section__list__item__button">
-        {name} <FontAwesomeIcon icon={faSort} />
+  const listItems = listItemsProperties.map((item) => (
+    <li className="sort-section__list__item" key={item.value}>
+      <p
+        className="sort-section__list__item__button"
+        onClick={() => handleSortProperyChange(item.value)}
+      >
+        {item.name} <FontAwesomeIcon icon={faSort} />
       </p>
     </li>
   ));

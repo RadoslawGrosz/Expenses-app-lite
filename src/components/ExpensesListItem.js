@@ -3,10 +3,23 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const ExpensesListItem = ({ expense, handleRemoveExpense }) => {
+const ExpensesListItem = ({
+  expense,
+  handleRemoveExpense,
+  handleExpenseEdit,
+}) => {
   const history = useHistory();
   const [stylesImage, setStylesImage] = useState();
-  const { id, name, date, amount, img } = expense;
+  const { id, name, date, amount, status, img } = expense;
+  const [expenseNewStatus, setExpenseNewStatus] = useState(status);
+
+  // const handleStatusChange = (e) => {
+  //   handleExpenseEdit(id, e.target.value);
+  // };
+
+  useEffect(() => {
+    handleExpenseEdit(id, expenseNewStatus);
+  }, [expenseNewStatus]);
 
   useEffect(() => {
     setStylesImage(() => ({
@@ -35,16 +48,12 @@ const ExpensesListItem = ({ expense, handleRemoveExpense }) => {
         <select
           name="status"
           className="main-section__list__item__value__status main-section__list__item__value__status--draft"
+          // defaultValue={expense.status === "paid" ? "paid" : "partly-paid"}
+          value={expenseNewStatus}
+          onChange={(e) => setExpenseNewStatus(e.target.value)}
         >
-          <option value="paid" selected={expense.status === "paid"}>
-            Zapłacone
-          </option>
-          <option
-            value="partly-paid"
-            selected={expense.status === "partly-paid"}
-          >
-            Częsciowo zapłacone
-          </option>
+          <option value="paid">Zapłacone</option>
+          <option value="partly-paid">Częsciowo zapłacone</option>
         </select>
       </div>
       <button

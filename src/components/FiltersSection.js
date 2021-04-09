@@ -64,7 +64,7 @@ const FiltersSection = ({ setFilters }) => {
         </li>
         <li className="filters-section__filters-list__item">
           <label
-            for="status"
+            htmlFor="status"
             className="filters-section__filters-list__item__name"
           >
             Status

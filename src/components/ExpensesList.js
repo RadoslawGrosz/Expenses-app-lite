@@ -1,7 +1,12 @@
 import { React } from "react";
 import ExpensesListItem from "./ExpensesListItem";
 
-const ExpensesList = ({ expenses, handleRemoveExpense, children }) => {
+const ExpensesList = ({
+  expenses,
+  handleRemoveExpense,
+  handleExpenseEdit,
+  children,
+}) => {
   return (
     <ul className="main-section__list">
       {expenses[0] &&
@@ -9,6 +14,8 @@ const ExpensesList = ({ expenses, handleRemoveExpense, children }) => {
           <ExpensesListItem
             expense={expense}
             handleRemoveExpense={handleRemoveExpense}
+            handleExpenseEdit={handleExpenseEdit}
+            key={expense.id}
           />
         ))}
       {children}

@@ -3,10 +3,19 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-const Expense = ({ expense = {} }) => {
+const Expense = ({ expense = {}, setExpenses, handleExpenseEdit }) => {
   const history = useHistory();
-  const { name, date, amount, img, status, description } = expense;
+  const { id, name, date, amount, img, status, description } = expense;
   const [stylesImage, setStylesImage] = useState();
+  const [expenseNewStatus, setExpenseNewStatus] = useState(status);
+  const [expenseNewDescription, setExpensesNewDescription] = useState(
+    description
+  );
+
+  const handleEditExpenseFormSubmit = (e) => {
+    e.preventDefault();
+    handleExpenseEdit(id, expenseNewStatus, expenseNewDescription);
+  };
 
   useEffect(() => {
     setStylesImage(() => ({
@@ -37,7 +46,12 @@ const Expense = ({ expense = {} }) => {
             {amount}
           </h3>
           <div className="main-section__info__status">
-            <select name="status" className="main-section__info__status__value">
+            <select
+              name="status"
+              className="main-section__info__status__value"
+              value={expenseNewStatus}
+              onChange={(e) => setExpenseNewStatus(e.target.value)}
+            >
               <option value="paid" selected={status === "Zapłacone"}>
                 Zapłacone
               </option>
@@ -49,12 +63,28 @@ const Expense = ({ expense = {} }) => {
               </option>
             </select>
           </div>
-          <div className="main-section__info__desc-container">
+          <form
+            className="main-section__info__desc-container"
+            onSubmit={handleEditExpenseFormSubmit}
+          >
             <h3 className="main-section__info__desc-container__title">Opis:</h3>
-            <p className="main-section__info__desc-container__description">
-              {description}
-            </p>
-          </div>
+            <textarea
+              name="text"
+              rows="14"
+              cols="10"
+              wrap="soft"
+              maxLength="500"
+              placeholder="Dodaj opis..."
+              value={expenseNewDescription}
+              className="main-section__info__desc-container__description"
+              onChange={(e) => setExpensesNewDescription(e.target.value)}
+            />
+            <input
+              type="submit"
+              value="Zapisz"
+              className="main-section__info__desc-container__submit"
+            />
+          </form>
         </article>
       </section>
     </>
