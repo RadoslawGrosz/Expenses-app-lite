@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-const Expense = ({ expense = {}, setExpenses, handleExpenseEdit }) => {
+const Expense = ({ expense = {}, handleExpenseEdit }) => {
   const history = useHistory();
   const { id, name, date, amount, img, status, description } = expense;
   const [stylesImage, setStylesImage] = useState();
@@ -18,14 +18,19 @@ const Expense = ({ expense = {}, setExpenses, handleExpenseEdit }) => {
   };
 
   useEffect(() => {
+    // if (img) {
+    //   setStylesImage(() => ({
+    //     backgroundImage: `url(${img.url})`,
+    //   }));
+    // }
     setStylesImage(() => ({
       backgroundImage: `url(${
-        img
-          ? img
+        img.url
+          ? img.url
           : "https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png"
       })`,
     }));
-  }, [expense]);
+  }, [img]);
 
   return (
     <>
@@ -52,15 +57,8 @@ const Expense = ({ expense = {}, setExpenses, handleExpenseEdit }) => {
               value={expenseNewStatus}
               onChange={(e) => setExpenseNewStatus(e.target.value)}
             >
-              <option value="paid" selected={status === "Zapłacone"}>
-                Zapłacone
-              </option>
-              <option
-                value="partly-paid"
-                selected={status === "Częsciowo zapłacone"}
-              >
-                Częsciowo zapłacone
-              </option>
+              <option value="paid">Zapłacone</option>
+              <option value="partly-paid">Częsciowo zapłacone</option>
             </select>
           </div>
           <form
