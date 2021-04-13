@@ -15,7 +15,7 @@ const ExpensesList = ({
             expense={expense}
             handleRemoveExpense={handleRemoveExpense}
             handleExpenseEdit={handleExpenseEdit}
-            key={expense.id}
+            key={expense.lp}
           />
         ))}
       {children}

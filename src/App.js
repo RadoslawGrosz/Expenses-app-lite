@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
+import firebase from "./firebase";
 import "./css/reset.css";
 import "./css/index.css";
 import img from "./img/phone-transparent.png";
@@ -11,6 +12,7 @@ import MainSection from "./components/MainSection";
 import Expense from "./components/Expense";
 import Login from "./components/Login";
 import AuthenticationService from "./security/AuthenticationService";
+import ExpensesApi from "./api/ExpenseApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faFileUpload } from "@fortawesome/free-solid-svg-icons";
 
@@ -36,61 +38,31 @@ const App = () => {
   });
 
   const [expenses, setExpenses] = useState([
-    {
-      id: 10,
-      name: "Zakup telefonu",
-      date: "2019-02-19",
-      amount: 1200,
-      img,
-      status: "paid",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-    },
-    {
-      id: 2,
-      name: "Zakup samochodu",
-      date: "2020-12-02",
-      amount: 85000,
-      img:
-        "https://www.autoremo.pl/wp-content/uploads/2019/07/20190703_012.jpg",
-      status: "partly-paid",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum leo ac posuere lacinia. Sed rutrum tempus velit, vel auctor risus tempor id. Etiam vel felis facilisis, hendrerit nunc sit amet, mattis eros. Mauris tristique, nibh nec vestibulum iaculis, turpis augue bibendum est, nec ultrices risus felis eget diam. Maecenas non scelerisque nisi, non tincidunt eros. Fusce pellentesque sit amet mauris nec aliquet. Donec leo ex, interdum ornare vulputate a, sagittis eget lorem.",
-    },
-    {
-      id: 3,
-      name: "a",
-      date: "2018-02-19",
-      amount: 2200,
-      img,
-      status: "paid",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-    },
-    {
-      id: 4,
-      name: "b",
-      date: "2017-02-19",
-      amount: 3200,
-      img,
-      status: "paid",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-    },
-    {
-      id: 5,
-      name: "c",
-      date: "2016-02-19",
-      amount: 4200,
-      img,
-      status: "paid",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-    },
+    // {
+    //   id: 10,
+    //   name: "Zakup telefonu",
+    //   date: "2019-02-19",
+    //   amount: 1200,
+    //   img,
+    //   status: "paid",
+    //   description:
+    //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet magna aliquet, consectetur tellus id, placerat neque. Nulla ullamcorper at leo eu lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem quam, tincidunt sit amet mauris vel, commodo interdum turpis. Mauris eget faucibus dui. Maecenas at elementum dolor. Suspendisse at tincidunt velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Zakup samochodu",
+    //   date: "2020-12-02",
+    //   amount: 85000,
+    //   img:
+    //     "https://www.autoremo.pl/wp-content/uploads/2019/07/20190703_012.jpg",
+    //   status: "partly-paid",
+    //   description:
+    //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum leo ac posuere lacinia. Sed rutrum tempus velit, vel auctor risus tempor id. Etiam vel felis facilisis, hendrerit nunc sit amet, mattis eros. Mauris tristique, nibh nec vestibulum iaculis, turpis augue bibendum est, nec ultrices risus felis eget diam. Maecenas non scelerisque nisi, non tincidunt eros. Fusce pellentesque sit amet mauris nec aliquet. Donec leo ex, interdum ornare vulputate a, sagittis eget lorem.",
+    // },
   ]);
 
   const [newExpense, setNewExpense] = useState({
-    id: expenses.length + 1,
+    lp: expenses.length + 1,
     name: "",
     date: "",
     amount: 0,
@@ -104,6 +76,9 @@ const App = () => {
         const loggedUser = await AuthenticationService.logIn();
         if (loggedUser.username) {
           setUser(loggedUser);
+          const expenses = await ExpensesApi.getExpenses();
+          expenses.forEach((expense, index) => (expense.lp = index + 1));
+          setExpenses(expenses);
         } else {
           sessionStorage.clear("token");
         }
@@ -118,7 +93,7 @@ const App = () => {
 
   useEffect(() => {
     setNewExpenseImage(() => ({
-      backgroundImage: `url(${newExpense.img})`,
+      backgroundImage: `url(${newExpense.img.url})`,
     }));
   }, [newExpense]);
 
@@ -174,7 +149,7 @@ const App = () => {
           if (description) expense.description = description;
         }
       });
-      console.log(prev);
+      // console.log(prev);
       return prev;
     });
   };
@@ -224,26 +199,62 @@ const App = () => {
     reader.onload = () => {
       setNewExpense((prev) => ({
         ...prev,
-        img: reader.result,
+        img: {
+          url: reader.result,
+          name: e.target.files[0].name,
+        },
       }));
     };
   };
+
+  useEffect(() => {
+    console.log(newExpense);
+  }, [newExpense]);
 
   const handleRemoveExpense = (id) => {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   };
 
-  const handleAddNewExpense = () => {
+  const handleAddNewExpense = async (e) => {
+    e.preventDefault();
+
+    if (newExpense.img.name) {
+      const storageRef = firebase.storage().ref().child(newExpense.img.name);
+      const snapshot = await storageRef.putString(
+        newExpense.img.url,
+        "data_url"
+      );
+      const downloadUrl = await snapshot.ref.getDownloadURL();
+
+      ExpensesApi.postExpense({
+        ...newExpense,
+        img: {
+          name: newExpense.img.name,
+          url: downloadUrl,
+        },
+      });
+    } else {
+      ExpensesApi.postExpense({
+        ...newExpense,
+        img: {
+          name: "",
+          url: "",
+        },
+      });
+    }
+
     setExpenses((prev) => [
       ...prev,
       {
         ...newExpense,
-        id: expenses.length + 1,
+        lp: expenses.length + 1,
       },
     ]);
+
     setIsNewExpenseFormVisible(false);
+
     setNewExpense({
-      id: expenses.length + 1,
+      lp: expenses.length + 1,
       name: "",
       date: "",
       amount: 0,
@@ -360,7 +371,7 @@ const App = () => {
             path="/:id"
             render={() => (
               <Expense
-                expense={expenses.find((expense) => expense.id == id)}
+                expense={expenses.find((expense) => expense.lp == id)}
                 setExpenses={setExpenses}
                 handleExpenseEdit={handleExpenseEdit}
               />

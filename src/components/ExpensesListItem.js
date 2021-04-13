@@ -10,7 +10,7 @@ const ExpensesListItem = ({
 }) => {
   const history = useHistory();
   const [stylesImage, setStylesImage] = useState();
-  const { id, name, date, amount, status, img } = expense;
+  const { id, lp, name, date, amount, status, img } = expense;
   const [expenseNewStatus, setExpenseNewStatus] = useState(status);
 
   // const handleStatusChange = (e) => {
@@ -24,8 +24,8 @@ const ExpensesListItem = ({
   useEffect(() => {
     setStylesImage(() => ({
       backgroundImage: `url(${
-        img
-          ? img
+        img.url
+          ? img.url
           : "https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png"
       })`,
     }));
@@ -33,7 +33,7 @@ const ExpensesListItem = ({
 
   return (
     <li className="main-section__list__item">
-      <p className="main-section__list__item__value">{id}</p>
+      <p className="main-section__list__item__value">{lp}</p>
       <p className="main-section__list__item__value">{name}</p>
       <p className="main-section__list__item__value">{date}</p>
       <p className="main-section__list__item__value main-section__list__item__value--amount">
@@ -41,14 +41,13 @@ const ExpensesListItem = ({
       </p>
       <div
         className="main-section__list__item__value main-section__list__item__value--image"
-        onClick={() => history.push(`/${id}`)}
+        onClick={() => history.push(`/${lp}`)}
         style={stylesImage}
       ></div>
       <div className="main-section__list__item__value">
         <select
           name="status"
           className="main-section__list__item__value__status main-section__list__item__value__status--draft"
-          // defaultValue={expense.status === "paid" ? "paid" : "partly-paid"}
           value={expenseNewStatus}
           onChange={(e) => setExpenseNewStatus(e.target.value)}
         >

@@ -203,10 +203,10 @@
           cursor: pointer;
           z-index: 2;
 
-          &:hover {
-            transform: scale(2);
-            z-index: 3;
-          }
+          // &:hover {
+          //   transform: scale(2);
+          //   z-index: 3;
+          // }
         }
 
         &__image {
