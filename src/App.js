@@ -25,7 +25,7 @@ const App = () => {
     if (user.id) setIsLoginFormVisible(false);
     else dispatch(setVisibility(false));
   }, [user]);
-
+  
   return (
     <main className="main-content">
       <Header setIsLoginFormVisible={setIsLoginFormVisible} />
