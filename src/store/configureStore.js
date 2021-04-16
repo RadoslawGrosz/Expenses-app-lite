@@ -11,9 +11,7 @@ const store = () => {
       expenses: expensesReducer,
       filters: filtersReducer,
       newExpense: newExpenseFormReducer,
-    }),
-    +window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__()
+    })
   );
   return storeConfig;
 };

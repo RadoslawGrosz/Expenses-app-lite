@@ -89,7 +89,7 @@ const NewExpenseForm = () => {
       dispatch(setExpenseToDefault());
     };
 
-    if (newExpenseUploaded) getExpenses();
+    if (newExpenseUploaded) setTimeout(getExpenses, 500);
   }, [newExpenseUploaded]);
 
   return (
