@@ -1,9 +1,8 @@
-/* eslint-disable implicit-arrow-linebreak */
-import axios from 'axios';
+import axios from "axios";
 
 class AuthenticationService {
   async logIn(e) {
-    let token = sessionStorage.getItem('token');
+    let token = sessionStorage.getItem("token");
 
     if (e) {
       e.preventDefault();
@@ -12,11 +11,11 @@ class AuthenticationService {
     }
 
     let user = {};
-    const url = 'http://localhost:8080/api/user/login';
+    const url = "http://localhost:8080/api/user/login";
 
     const headers = {
       // 'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: token,
     };
 
@@ -25,23 +24,24 @@ class AuthenticationService {
       this.setAuthenticationSettings(token);
       user = res.data;
     } catch (err) {
-      console.error('nie udane logowanie');
+      console.error("nie udane logowanie");
+      alert("Złe hasło lub login!");
     }
 
     return user;
   }
 
   setAuthenticationSettings = (token) => {
-    sessionStorage.setItem('token', token);
+    sessionStorage.setItem("token", token);
     // this.setupAxiosInterceptors(token);
   };
 
   clearAuthenticationSettings = () => {
-    sessionStorage.clear('token');
+    sessionStorage.clear("token");
     // this.setupAxiosInterceptors();
   };
 
-  isUserLoggedIn = () => sessionStorage.getItem('token');
+  isUserLoggedIn = () => sessionStorage.getItem("token");
 
   createBasicAuthToken = (login, password) =>
     `Basic ${btoa(`${login}:${password}`)}`;

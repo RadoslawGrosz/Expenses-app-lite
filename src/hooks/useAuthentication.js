@@ -13,7 +13,7 @@ const useAuthentication = () => {
     const handleUserAuthentication = async () => {
       if (AuthenticationService.isUserLoggedIn()) {
         const loggedUser = await AuthenticationService.logIn();
-        if (loggedUser.username) {
+        if (loggedUser.id) {
           dispatch(setUser(loggedUser));
         } else {
           sessionStorage.clear("token");

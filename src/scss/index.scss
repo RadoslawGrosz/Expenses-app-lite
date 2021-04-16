@@ -48,7 +48,8 @@ body {
 
     z-index: -1;
 
-    height: 100vh;
+    min-height: 1000px;
+    height: 55vmax;
     opacity: 0.4;
 
     &--left {

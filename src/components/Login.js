@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AuthenticationService from "../security/AuthenticationService";
 import "../css/login.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../actions/user";
 
 const Login = ({ setIsLoginFormVisible }) => {
@@ -10,7 +10,6 @@ const Login = ({ setIsLoginFormVisible }) => {
   const handleLogin = async (e) => {
     const loggedUser = await AuthenticationService.logIn(e);
     dispatch(setUser(loggedUser));
-    setIsLoginFormVisible(false);
   };
 
   const handleHideLoginForm = (e) => {

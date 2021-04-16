@@ -71,6 +71,7 @@ const FiltersSection = () => {
               type="text"
               className="filters-section__filters-list__item__value__input"
               onChange={(e) => dispatch(setText(e.target.value))}
+              maxLength={25}
             />
             <FontAwesomeIcon icon={faSearch} />
           </div>

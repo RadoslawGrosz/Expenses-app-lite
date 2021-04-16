@@ -14,6 +14,7 @@ const useExpenses = () => {
       dispatch(setExpenses(expensesFromApi));
     };
     if (user.id) getExpenses();
+    else dispatch(setExpenses([]));
   }, [user]);
 };
 

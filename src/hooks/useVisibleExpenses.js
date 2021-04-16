@@ -8,7 +8,7 @@ const useVisibleExpenses = () => {
   const [visibleExpenses, setVisibleExpenses] = useState([]);
 
   useEffect(() => {
-    if (!expenses.length) return;
+    // if (!expenses.length) return;
     setVisibleExpenses(() =>
       expenses
         .filter((expense) => {

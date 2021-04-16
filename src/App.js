@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./css/reset.css";
 import "./css/index.css";
 import moneyImg from "./img/money-transparent.png";
@@ -11,6 +11,7 @@ import MainSection from "./components/MainSection";
 import Expense from "./components/Expense";
 import Login from "./components/Login";
 import useAuthentication from "./hooks/useAuthentication";
+import { setVisibility } from "./actions/newExpense";
 
 const App = () => {
   useAuthentication();
@@ -18,7 +19,13 @@ const App = () => {
   const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
   const expenses = useSelector((state) => state.expenses);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (user.id) setIsLoginFormVisible(false);
+    else dispatch(setVisibility(false));
+  }, [user]);
+  
   return (
     <main className="main-content">
       <Header setIsLoginFormVisible={setIsLoginFormVisible} />
