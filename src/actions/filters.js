@@ -32,3 +32,8 @@ export const sortBy = (sortBy) => ({
   type: "SORT_BY",
   sortBy,
 });
+
+export const setSortDirection = (isSortDesc) => ({
+  type: "SET_SORT_DIRECTION",
+  isSortDesc,
+});

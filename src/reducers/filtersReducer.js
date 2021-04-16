@@ -59,6 +59,11 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
         ...state,
         sortBy: action.sortBy,
       };
+    case "SET_SORT_DIRECTION":
+      return {
+        ...state,
+        sortDesc: action.isSortDesc,
+      };
     default:
       return state;
   }
