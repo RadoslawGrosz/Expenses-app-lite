@@ -1,36 +1,17 @@
 import { React } from "react";
+import { useDispatch } from "react-redux";
 import "../css/filtersSection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  setMinAmount,
+  setMaxAmount,
+  setStatus,
+  setText,
+} from "../actions/filters";
 
-const FiltersSection = ({ setFilters }) => {
-  const handleMinAmountFilterChange = (e) => {
-    setFilters((prev) => ({
-      ...prev,
-      minAmount: e.target.value,
-    }));
-  };
-
-  const handleMaxAmountFilterChange = (e) => {
-    setFilters((prev) => ({
-      ...prev,
-      maxAmount: e.target.value,
-    }));
-  };
-
-  const handleStatusFilterChange = (e) => {
-    setFilters((prev) => ({
-      ...prev,
-      status: e.target.value,
-    }));
-  };
-
-  const handleNameFilterChange = (e) => {
-    setFilters((prev) => ({
-      ...prev,
-      name: e.target.value,
-    }));
-  };
+const FiltersSection = () => {
+  const dispatch = useDispatch();
 
   return (
     <section className="filters-section">
@@ -44,7 +25,7 @@ const FiltersSection = ({ setFilters }) => {
             <input
               type="number"
               className="filters-section__filters-list__item__value__input"
-              onChange={handleMinAmountFilterChange}
+              onChange={(e) => dispatch(setMinAmount(e.target.value))}
             />
             <FontAwesomeIcon icon={faDollarSign} />
           </div>
@@ -57,7 +38,7 @@ const FiltersSection = ({ setFilters }) => {
             <input
               type="number"
               className="filters-section__filters-list__item__value__input"
-              onChange={handleMaxAmountFilterChange}
+              onChange={(e) => dispatch(setMaxAmount(e.target.value))}
             />
             <FontAwesomeIcon icon={faDollarSign} />
           </div>
@@ -73,7 +54,7 @@ const FiltersSection = ({ setFilters }) => {
             <select
               name="status"
               className="filters-section__filters-list__item__value__input"
-              onChange={handleStatusFilterChange}
+              onChange={(e) => dispatch(setStatus(e.target.value))}
             >
               <option value="all">Wszystkie</option>
               <option value="paid">Zapłacone</option>
@@ -89,7 +70,7 @@ const FiltersSection = ({ setFilters }) => {
             <input
               type="text"
               className="filters-section__filters-list__item__value__input"
-              onChange={handleNameFilterChange}
+              onChange={(e) => dispatch(setText(e.target.value))}
             />
             <FontAwesomeIcon icon={faSearch} />
           </div>

@@ -2,12 +2,16 @@ import { React } from "react";
 import "../css/sortSection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { sortBy } from "../actions/filters";
 
-const SortSection = ({ handleSortProperyChange }) => {
+const SortSection = () => {
+  const dispatch = useDispatch();
+
   const listItemsProperties = [
     {
       name: "Lp.",
-      value: "id",
+      value: "lp",
     },
     {
       name: "Nazwa transakcji",
@@ -35,7 +39,7 @@ const SortSection = ({ handleSortProperyChange }) => {
     <li className="sort-section__list__item" key={item.value}>
       <p
         className="sort-section__list__item__button"
-        onClick={() => handleSortProperyChange(item.value)}
+        onClick={() => dispatch(sortBy(item.value))}
       >
         {item.name} <FontAwesomeIcon icon={faSort} />
       </p>

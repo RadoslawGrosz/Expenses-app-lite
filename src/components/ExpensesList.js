@@ -1,24 +1,24 @@
 import { React } from "react";
 import ExpensesListItem from "./ExpensesListItem";
+import NewExpenseForm from "./NewExpenseForm";
+import useExpenses from "../hooks/useExpenses";
+import useVisibleExpenses from "../hooks/useVisibleExpenses";
+import { useSelector } from "react-redux";
 
-const ExpensesList = ({
-  expenses,
-  handleRemoveExpense,
-  handleExpenseEdit,
-  children,
-}) => {
+const ExpensesList = () => {
+  useExpenses();
+  const visibleExpenses = useVisibleExpenses();
+  const isNewExpenseFormVisible = useSelector(
+    (state) => state.newExpense.isVisible
+  );
+
   return (
     <ul className="main-section__list">
-      {expenses[0] &&
-        expenses.map((expense) => (
-          <ExpensesListItem
-            expense={expense}
-            handleRemoveExpense={handleRemoveExpense}
-            handleExpenseEdit={handleExpenseEdit}
-            key={expense.lp}
-          />
+      {visibleExpenses[0] &&
+        visibleExpenses.map((expense) => (
+          <ExpensesListItem expense={expense} key={expense.lp} />
         ))}
-      {children}
+      {isNewExpenseFormVisible && <NewExpenseForm />}
     </ul>
   );
 };
