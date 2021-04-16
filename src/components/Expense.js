@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { editExpense } from "../actions/expense";
+import ExpenseApi from "../api/ExpenseApi";
 
-const Expense = ({ expense = {}, handleExpenseEdit }) => {
+const Expense = ({ expense = {} }) => {
   const history = useHistory();
   const { id, name, date, amount, img, status, description } = expense;
   const [stylesImage, setStylesImage] = useState();
@@ -11,10 +14,15 @@ const Expense = ({ expense = {}, handleExpenseEdit }) => {
   const [expenseNewDescription, setExpensesNewDescription] = useState(
     description
   );
+  const expenses = useSelector((state) => state.expenses);
+  const dispatch = useDispatch();
 
-  const handleEditExpenseFormSubmit = (e) => {
+  const handleEditExpenseFormSubmit = async (e) => {
     e.preventDefault();
-    handleExpenseEdit(id, expenseNewStatus, expenseNewDescription);
+    await dispatch(editExpense(id, expenseNewStatus, expenseNewDescription));
+    const expenseToSend = { ...expenses.find((expense) => expense.id === id) };
+    delete expenseToSend.lp;
+    ExpenseApi.editExpense(id, expenseToSend);
   };
 
   useEffect(() => {

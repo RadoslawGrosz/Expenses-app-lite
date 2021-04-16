@@ -1,21 +1,18 @@
 import { React, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import ExpenseApi from "../api/ExpenseApi";
+import { removeExpense, editExpense } from "../actions/expense";
 
-const ExpensesListItem = ({
-  expense,
-  handleRemoveExpense,
-  handleExpenseEdit,
-}) => {
+const ExpensesListItem = ({ expense }) => {
   const history = useHistory();
+  const expenses = useSelector((state) => state.expenses);
   const [stylesImage, setStylesImage] = useState();
   const { id, lp, name, date, amount, status, img } = expense;
   const [expenseNewStatus, setExpenseNewStatus] = useState(status);
-
-  // const handleStatusChange = (e) => {
-  //   handleExpenseEdit(id, e.target.value);
-  // };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     handleExpenseEdit(id, expenseNewStatus);
@@ -30,6 +27,18 @@ const ExpensesListItem = ({
       })`,
     }));
   }, [img]);
+
+  const handleExpenseEdit = async (id, status, description) => {
+    await dispatch(editExpense(id, status, description));
+    const expenseToSend = { ...expenses.find((expense) => expense.id === id) };
+    delete expenseToSend.lp;
+    ExpenseApi.editExpense(id, expenseToSend);
+  };
+
+  const handleRemoveExpense = (id) => {
+    ExpenseApi.delExpense(id);
+    dispatch(removeExpense(id));
+  };
 
   return (
     <li className="main-section__list__item">

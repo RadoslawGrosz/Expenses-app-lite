@@ -1,5 +1,8 @@
 import { React, useEffect } from "react";
 import "../css/header.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../actions/user";
+import { setVisibility } from "../actions/newExpense";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlusCircle,
@@ -7,19 +10,15 @@ import {
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ({
-  isNewExpenseFormVisible,
-  setIsNewExpenseFormVisible,
-  setIsLoginFormVisible,
-  user,
-  setUser,
-}) => {
-  const handleToggleForm = () => {
-    setIsNewExpenseFormVisible(!isNewExpenseFormVisible);
-  };
+const Header = ({ setIsLoginFormVisible }) => {
+  const isNewExpenseFormVisible = useSelector(
+    (state) => state.newExpense.isVisible
+  );
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
-    if (user.id) return setUser({});
+    if (user.id) return dispatch(setUser({}));
     setIsLoginFormVisible(true);
   };
 
@@ -36,7 +35,7 @@ const Header = ({
             <button
               href=""
               className="site-header__list__item__link site-header__list__item__link--add"
-              onClick={handleToggleForm}
+              onClick={(e) => dispatch(setVisibility(!isNewExpenseFormVisible))}
             >
               <FontAwesomeIcon
                 icon={faPlusCircle}
