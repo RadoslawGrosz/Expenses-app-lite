@@ -26,6 +26,11 @@ const Expense = ({ expense = {} }) => {
   };
 
   useEffect(() => {
+    // if (img) {
+    //   setStylesImage(() => ({
+    //     backgroundImage: `url(${img.url})`,
+    //   }));
+    // }
     setStylesImage(() => ({
       backgroundImage: `url(${
         img.url
