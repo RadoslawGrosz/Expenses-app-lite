@@ -3,7 +3,7 @@ import { Switch, Route, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./css/reset.css";
 import "./css/index.css";
-import moneyImg from "./img/money-transparent.png";
+import moneyImg from "./img/money-transparent-small.png";
 import Header from "./components/Header";
 import FiltersSection from "./components/FiltersSection";
 import SortSection from "./components/SortSection";
