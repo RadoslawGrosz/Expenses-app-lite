@@ -11,6 +11,7 @@ const SortSection = () => {
   const dispatch = useDispatch();
 
   const handleSort = (sortProp) => {
+    if (sortProp === "none") return;
     dispatch(sortBy(sortProp));
     if (sortByValue === sortProp) dispatch(setSortDirection(!sortDirection));
   };
@@ -34,7 +35,7 @@ const SortSection = () => {
     },
     {
       name: "Obrazek",
-      value: "image",
+      value: "none",
     },
     {
       name: "Status",
@@ -48,7 +49,8 @@ const SortSection = () => {
         className="sort-section__list__item__button"
         onClick={() => handleSort(item.value)}
       >
-        {item.name} <FontAwesomeIcon icon={faSort} />
+        {item.name}{" "}
+        {!(item.value === "none") && <FontAwesomeIcon icon={faSort} />}
       </p>
     </li>
   ));

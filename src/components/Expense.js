@@ -17,11 +17,11 @@ const Expense = ({ expense = {} }) => {
   const expenses = useSelector((state) => state.expenses);
   const dispatch = useDispatch();
 
-  const handleEditExpenseFormSubmit = async (e) => {
+  const handleEditExpense = async (e) => {
     e.preventDefault();
     await dispatch(editExpense(id, expenseNewStatus, expenseNewDescription));
     const expenseToSend = { ...expenses.find((expense) => expense.id === id) };
-    delete expenseToSend.lp;
+    // delete expenseToSend.lp;
     ExpenseApi.editExpense(id, expenseToSend);
   };
 
@@ -66,7 +66,7 @@ const Expense = ({ expense = {} }) => {
           </div>
           <form
             className="main-section__info__desc-container"
-            onSubmit={handleEditExpenseFormSubmit}
+            onSubmit={handleEditExpense}
           >
             <h3 className="main-section__info__desc-container__title">Opis:</h3>
             <textarea

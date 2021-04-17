@@ -104,6 +104,11 @@
   background-color: #f2f2f2;
 }
 
+.main-section__list__item:nth-child(even) .main-section__list__item__value--image {
+  -webkit-box-shadow: inset 0 0 2px #000;
+          box-shadow: inset 0 0 2px #000;
+}
+
 .main-section__list__item__value {
   position: relative;
   -webkit-box-flex: 1;
@@ -211,6 +216,8 @@
   background-position-x: center;
   background-position-y: center;
   background-size: contain;
+  -webkit-box-shadow: inset 0 0 6px #000;
+          box-shadow: inset 0 0 6px #000;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   cursor: pointer;
@@ -274,6 +281,7 @@
   background-color: red;
   font-size: 1rem;
   cursor: pointer;
+  -moz-appearance: none;
 }
 
 .main-section__list__item__value__status--draft {

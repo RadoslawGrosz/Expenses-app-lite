@@ -1,9 +1,11 @@
 import axios from "axios";
 
 class ExpenseApi {
+  rootUrl = "https://expenses-app-lite-api.herokuapp.com/";
+
   getExpenses = async () => {
     const token = sessionStorage.getItem("token");
-    const url = "http://localhost:8080/api/expense";
+    const url = `${this.rootUrl}api/expense`;
 
     const headers = {
       // 'Access-Control-Allow-Origin': '*',
@@ -21,7 +23,7 @@ class ExpenseApi {
 
   postExpense = async (expense) => {
     const token = sessionStorage.getItem("token");
-    const url = "http://localhost:8080/api/expense";
+    const url = `${this.rootUrl}api/expense`;
 
     const headers = {
       // 'Access-Control-Allow-Origin': '*',
@@ -40,7 +42,7 @@ class ExpenseApi {
 
   delExpense = async (id) => {
     const token = sessionStorage.getItem("token");
-    const url = `http://localhost:8080/api/expense/${id}`;
+    const url = `${this.rootUrl}api/expense/${id}`;
 
     const headers = {
       // 'Access-Control-Allow-Origin': '*',
@@ -59,7 +61,7 @@ class ExpenseApi {
   editExpense = async (id, expense) => {
     if (!id) return;
     const token = sessionStorage.getItem("token");
-    const url = `http://localhost:8080/api/expense/${id}`;
+    const url = `${this.rootUrl}api/expense/${id}`;
 
     const headers = {
       // 'Access-Control-Allow-Origin': '*',

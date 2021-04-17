@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import AuthenticationService from "../security/AuthenticationService";
 import "../css/login.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../actions/user";
 
 const Login = ({ setIsLoginFormVisible }) => {

@@ -27,9 +27,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   width: 100%;
   height: 4.2rem;
   width: 100%;
@@ -69,10 +66,28 @@
           flex: 0.5;
 }
 
+.sort-section__list__item:nth-child(1) .sort-section__list__item__button {
+  padding-left: 0;
+}
+
+.sort-section__list__item:nth-last-child(2) .sort-section__list__item__button {
+  cursor: default;
+}
+
 .sort-section__list__item__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-decoration: none;
   font-size: 1.2rem;
   width: auto;
+  padding: 0 1rem;
   cursor: pointer;
 }
 /*# sourceMappingURL=sortSection.css.map */

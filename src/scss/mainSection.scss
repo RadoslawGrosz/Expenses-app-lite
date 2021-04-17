@@ -98,6 +98,14 @@
         background-color: #f2f2f2;
       }
 
+      &:nth-child(even) &__value--image {
+        // background-color: #f2f2f2;
+        box-shadow: inset 0 0 2px #000;
+        // border-left: solid 3px #000;
+        // border-right: solid 3px #000;
+        // border: solid 3px #000;
+      }
+
       &__value {
         position: relative;
 
@@ -198,6 +206,7 @@
           background-position-y: center;
           // background-attachment: fixed;
           background-size: contain;
+          box-shadow: inset 0 0 6px #000;
 
           transition: 0.3s;
           cursor: pointer;
@@ -265,6 +274,7 @@
           font-size: 1rem;
 
           cursor: pointer;
+          -moz-appearance: none;
 
           &--draft {
             background-color: #f58c93;

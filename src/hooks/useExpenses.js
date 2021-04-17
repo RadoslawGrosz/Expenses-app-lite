@@ -10,7 +10,8 @@ const useExpenses = () => {
   useEffect(() => {
     const getExpenses = async () => {
       const expensesFromApi = await ExpenseApi.getExpenses();
-      expensesFromApi.forEach((expense, index) => (expense.lp = index + 1));
+      // expensesFromApi.forEach((expense, index) => (expense.lp = index + 1));
+      // console.log(expensesFromApi);
       dispatch(setExpenses(expensesFromApi));
     };
     if (user.id) getExpenses();
