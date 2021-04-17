@@ -11,7 +11,7 @@ class AuthenticationService {
     }
 
     let user = {};
-    const url = "http://localhost:8080/api/user/login";
+    const url = "https://expenses-app-lite-api.herokuapp.com/api/user/login";
 
     const headers = {
       // 'Access-Control-Allow-Origin': '*',

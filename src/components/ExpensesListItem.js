@@ -31,7 +31,7 @@ const ExpensesListItem = ({ expense }) => {
   const handleExpenseEdit = async (id, status, description) => {
     await dispatch(editExpense(id, status, description));
     const expenseToSend = { ...expenses.find((expense) => expense.id === id) };
-    delete expenseToSend.lp;
+    // delete expenseToSend.lp;
     ExpenseApi.editExpense(id, expenseToSend);
   };
 

@@ -24,7 +24,7 @@
 
   &__list {
     display: flex;
-    align-items: center;
+    // align-items: stretch;
 
     width: 100%;
     height: 4.2rem;
@@ -34,6 +34,7 @@
     &__item {
       display: flex;
       justify-content: center;
+      // align-items: stretch;
 
       flex: 1;
       user-select: none; /* supported by Chrome and Opera */
@@ -45,14 +46,26 @@
       &:nth-child(1) {
         display: flex;
         justify-content: flex-start;
-
         flex: 0.5;
       }
 
+      &:nth-child(1) &__button {
+        padding-left: 0;
+      }
+
+      &:nth-last-child(2) &__button {
+        cursor: default;
+      }
+
       &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         text-decoration: none;
         font-size: 1.2rem;
         width: auto;
+        padding: 0 1rem;
 
         cursor: pointer;
       }

@@ -33,6 +33,7 @@
       }
 
       &__value {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -56,6 +57,8 @@
           font-size: 1rem;
           line-height: 2.8rem;
           height: 2.8rem;
+          // -webkit-appearance: none;
+          -moz-appearance: textfield;
 
           cursor: pointer;
         }
@@ -88,6 +91,8 @@
         &__input {
           width: 100%;
           border: none;
+          // -webkit-appearance: none;
+          -moz-appearance: none;
 
           & option {
             background-color: #f58c93;

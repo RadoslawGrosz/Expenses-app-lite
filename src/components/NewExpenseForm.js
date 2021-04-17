@@ -50,7 +50,7 @@ const NewExpenseForm = () => {
     e.preventDefault();
 
     const expenseToSend = { ...expense };
-    delete expenseToSend.lp;
+    // delete expenseToSend.lp;
 
     if (expense.img.name) {
       const storageRef = firebase.storage().ref().child(expense.img.name);
@@ -84,7 +84,7 @@ const NewExpenseForm = () => {
   useEffect(() => {
     const getExpenses = async () => {
       const expensesFromApi = await ExpenseApi.getExpenses();
-      expensesFromApi.forEach((expense, index) => (expense.lp = index + 1));
+      // expensesFromApi.forEach((expense, index) => (expense.lp = index + 1));
       await dispatch(setExpenses(expensesFromApi));
       dispatch(setExpenseToDefault());
     };

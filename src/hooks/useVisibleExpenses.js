@@ -8,9 +8,8 @@ const useVisibleExpenses = () => {
   const [visibleExpenses, setVisibleExpenses] = useState([]);
 
   useEffect(() => {
-    // if (!expenses.length) return;
     setVisibleExpenses(() =>
-      expenses
+      [...expenses]
         .filter((expense) => {
           const minAmountMatch = !minAmount || expense.amount >= minAmount;
           const maxAmountMatch = !maxAmount || expense.amount <= maxAmount;
@@ -26,6 +25,15 @@ const useVisibleExpenses = () => {
         })
     );
   }, [filters, expenses]);
+
+  useEffect(() => {
+    setVisibleExpenses(() => {
+      const tempArray = [...expenses];
+      tempArray.forEach((expense, index) => (expense.lp = index + 1));
+      console.log("1", tempArray);
+      return tempArray;
+    });
+  }, [expenses]);
 
   return visibleExpenses;
 };

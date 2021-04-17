@@ -60,6 +60,7 @@ const FiltersSection = () => {
               <option value="paid">Zapłacone</option>
               <option value="partly-paid">Częsciowo zapłacone</option>
             </select>
+            {/* <FontAwesomeIcon icon={faDollarSign} /> */}
           </div>
         </li>
         <li className="filters-section__filters-list__item">
