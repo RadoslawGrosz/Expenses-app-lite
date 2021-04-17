@@ -68,6 +68,10 @@
         padding: 0 1rem;
 
         cursor: pointer;
+
+        & i {
+          padding-left: 0.5rem;
+        }
       }
     }
   }

@@ -50,7 +50,11 @@ const SortSection = () => {
         onClick={() => handleSort(item.value)}
       >
         {item.name}{" "}
-        {!(item.value === "none") && <FontAwesomeIcon icon={faSort} />}
+        {!(item.value === "none") && (
+          <i>
+            <FontAwesomeIcon icon={faSort} />
+          </i>
+        )}
       </p>
     </li>
   ));

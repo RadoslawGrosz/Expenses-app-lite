@@ -90,4 +90,8 @@
   padding: 0 1rem;
   cursor: pointer;
 }
+
+.sort-section__list__item__button i {
+  padding-left: 0.5rem;
+}
 /*# sourceMappingURL=sortSection.css.map */
