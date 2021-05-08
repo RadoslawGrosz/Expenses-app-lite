@@ -1,26 +1,8 @@
 .sort-section {
-  margin-top: 4vh;
+  margin: 4vh 0;
   padding: 0 2rem;
   border-radius: 0.7rem;
   background-color: #fff;
-}
-
-.sort-section__button {
-  background-color: transparent;
-  padding: 0 1rem 0 0;
-  border: none;
-  font-size: 2.4rem;
-  line-height: 4.2rem;
-  color: #5858ba;
-  cursor: pointer;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.sort-section__button:hover {
-  -webkit-transform: translateX(-0.5rem);
-          transform: translateX(-0.5rem);
-  color: #6f8efa;
 }
 
 .sort-section__list {
@@ -70,7 +52,7 @@
   padding-left: 0;
 }
 
-.sort-section__list__item:nth-last-child(2) .sort-section__list__item__button {
+.sort-section__list__item:is(.sort-section__list__item:nth-last-child(2), .sort-section__list__item:nth-child(1)) .sort-section__list__item__button {
   cursor: default;
 }
 

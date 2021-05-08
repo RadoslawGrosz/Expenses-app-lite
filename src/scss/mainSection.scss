@@ -1,7 +1,7 @@
 .main-section {
   display: flex;
 
-  margin-top: 4vh;
+  width: 100%;
   border-radius: 0.7rem;
   background-color: #fff;
 
@@ -9,13 +9,12 @@
     flex: 1;
 
     align-self: stretch;
-    // background-image: url("https://kwiaciarniaegzotyka.pl/wp-content/uploads/2018/10/kisspng-video-on-demand-retail-website-simple-no-png-5ab1349e1338a3.1123358815215627820787.png");
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
-    // background-attachment: fixed;
     background-size: contain;
-    // width: 500;
+
+    margin: 2rem;
   }
 
   &__info {

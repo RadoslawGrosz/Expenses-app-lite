@@ -1,5 +1,4 @@
-import { React } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import "../css/filtersSection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -8,10 +7,16 @@ import {
   setMaxAmount,
   setStatus,
   setText,
-} from "../actions/filters";
+} from "../store/filterSlice";
+import { useAppDispatch } from "../store/store";
+import { StatusEnum } from "../types/Expense";
 
-const FiltersSection = () => {
-  const dispatch = useDispatch();
+const FiltersSection: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setStatus(e.target.value as StatusEnum));
+  };
 
   return (
     <section className="filters-section">
@@ -25,7 +30,7 @@ const FiltersSection = () => {
             <input
               type="number"
               className="filters-section__filters-list__item__value__input"
-              onChange={(e) => dispatch(setMinAmount(e.target.value))}
+              onChange={(e) => dispatch(setMinAmount(parseInt(e.target.value)))}
             />
             <FontAwesomeIcon icon={faDollarSign} />
           </div>
@@ -38,7 +43,7 @@ const FiltersSection = () => {
             <input
               type="number"
               className="filters-section__filters-list__item__value__input"
-              onChange={(e) => dispatch(setMaxAmount(e.target.value))}
+              onChange={(e) => dispatch(setMaxAmount(parseInt(e.target.value)))}
             />
             <FontAwesomeIcon icon={faDollarSign} />
           </div>
@@ -54,13 +59,12 @@ const FiltersSection = () => {
             <select
               name="status"
               className="filters-section__filters-list__item__value__input"
-              onChange={(e) => dispatch(setStatus(e.target.value))}
+              onChange={handleStatusChange}
             >
-              <option value="all">Wszystkie</option>
-              <option value="paid">Zapłacone</option>
-              <option value="partly-paid">Częsciowo zapłacone</option>
+              <option value={StatusEnum.All}>Wszystkie</option>
+              <option value={StatusEnum.Paid}>Zapłacone</option>
+              <option value={StatusEnum.PartlyPaid}>Częsciowo zapłacone</option>
             </select>
-            {/* <FontAwesomeIcon icon={faDollarSign} /> */}
           </div>
         </li>
         <li className="filters-section__filters-list__item">

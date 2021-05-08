@@ -1,56 +1,53 @@
-import { React } from "react";
+import React from "react";
 import "../css/sortSection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { sortBy, setSortDirection } from "../actions/filters";
+import { setSortBy } from "../store/filterSlice";
+import { useAppDispatch } from "../store/store";
+import { SortPropertiesEnum } from "../types/Filter";
 
-const SortSection = () => {
-  const sortByValue = useSelector((state) => state.filters.sortBy);
-  const sortDirection = useSelector((state) => state.filters.sortDesc);
-  const dispatch = useDispatch();
+const SortSection: React.FC = () => {
+  const dispatch = useAppDispatch();
 
-  const handleSort = (sortProp) => {
-    if (sortProp === "none") return;
-    dispatch(sortBy(sortProp));
-    if (sortByValue === sortProp) dispatch(setSortDirection(!sortDirection));
+  const handleSort = (sortProp: SortPropertiesEnum) => {
+    dispatch(setSortBy(sortProp));
   };
 
   const listItemsProperties = [
     {
       name: "Lp.",
-      value: "lp",
+      value: SortPropertiesEnum.Description,
     },
     {
       name: "Nazwa transakcji",
-      value: "name",
+      value: SortPropertiesEnum.Name,
     },
     {
       name: "Data",
-      value: "date",
+      value: SortPropertiesEnum.Date,
     },
     {
       name: "Kwota",
-      value: "amount",
+      value: SortPropertiesEnum.Amount,
     },
     {
       name: "Obrazek",
-      value: "none",
+      value: SortPropertiesEnum.Description,
     },
     {
       name: "Status",
-      value: "status",
+      value: SortPropertiesEnum.Status,
     },
   ];
 
   const listItems = listItemsProperties.map((item) => (
-    <li className="sort-section__list__item" key={item.value}>
+    <li className="sort-section__list__item" key={item.name}>
       <p
         className="sort-section__list__item__button"
         onClick={() => handleSort(item.value)}
       >
         {item.name}{" "}
-        {!(item.value === "none") && (
+        {!(item.value === SortPropertiesEnum.Description) && (
           <i>
             <FontAwesomeIcon icon={faSort} />
           </i>

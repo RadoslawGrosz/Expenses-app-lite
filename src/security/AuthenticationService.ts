@@ -1,17 +1,17 @@
 import axios from "axios";
+import { UserCredentails } from "../types/User";
 
 class AuthenticationService {
-  async logIn(e) {
+  async logIn(userCredentails?: UserCredentails) {
     let token = sessionStorage.getItem("token");
 
-    if (e) {
-      e.preventDefault();
-      const { login, password } = e.target.elements;
-      token = this.createBasicAuthToken(login.value, password.value);
+    if (userCredentails) {
+      const { login, password } = userCredentails;
+      token = this.createBasicAuthToken(login, password);
     }
 
     let user = {};
-    const url = "https://expenses-app-lite-api.herokuapp.com/api/user/login";
+    const url = "http://localhost:8080/api/user/login";
 
     const headers = {
       // 'Access-Control-Allow-Origin': '*',
@@ -31,22 +31,23 @@ class AuthenticationService {
     return user;
   }
 
-  setAuthenticationSettings = (token) => {
+  setAuthenticationSettings = (token: string | null) => {
+    if (!token) return;
     sessionStorage.setItem("token", token);
     // this.setupAxiosInterceptors(token);
   };
 
   clearAuthenticationSettings = () => {
-    sessionStorage.clear("token");
+    sessionStorage.clear();
     // this.setupAxiosInterceptors();
   };
 
   isUserLoggedIn = () => sessionStorage.getItem("token");
 
-  createBasicAuthToken = (login, password) =>
+  createBasicAuthToken = (login: string, password: string) =>
     `Basic ${btoa(`${login}:${password}`)}`;
 
-  setupAxiosInterceptors = (token) => {
+  setupAxiosInterceptors = (token: string) => {
     axios.interceptors.request.use((config) => {
       const newConfig = config;
       if (token) {

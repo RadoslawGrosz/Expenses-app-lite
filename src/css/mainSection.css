@@ -3,7 +3,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 4vh;
+  width: 100%;
   border-radius: 0.7rem;
   background-color: #fff;
 }
@@ -19,6 +19,7 @@
   background-position-x: center;
   background-position-y: center;
   background-size: contain;
+  margin: 2rem;
 }
 
 .main-section__info {
