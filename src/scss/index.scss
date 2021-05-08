@@ -27,33 +27,71 @@ body {
   font-size: 10px;
 
   background-color: #f5f5fd;
+
+  &::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    min-width: 2100px;
+    height: 100%;
+    opacity: 0.4;
+    z-index: -1;
+    background-image: url(../img/money-transparent-small.png),
+      url(../img/money-transparent-small.png);
+    background-position: -70% 0, 170% 0;
+    background-repeat: no-repeat, no-repeat;
+  }
 }
 
 .main-content {
-  // position: relative;
-
   display: flex;
   flex-direction: column;
 
   max-width: 1400px;
   padding: 0 2.8rem 2.8rem 2.8rem;
   flex-grow: 1;
+}
 
-  &__img {
-    position: fixed;
+.expense-wrapper {
+  position: fixed;
+  top: 10vh;
 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  align-self: center;
+
+  width: 1400px;
+  // border: 0.3rem solid black;
+  z-index: 99;
+
+  &__button {
+    position: absolute;
+    left: 0;
     top: 0;
-    bottom: 0;
-    left: 85%;
+    width: 5rem;
+    height: 5rem;
 
-    z-index: -1;
+    background-color: transparent;
+    padding: 0 1rem 0 0;
+    border: none;
 
-    height: 100vh;
-    opacity: 0.4;
+    font-size: 2.4rem;
+    line-height: 4.2rem;
+    color: #5858ba;
 
-    &--left {
-      left: auto;
-      right: 85%;
+    cursor: pointer;
+    transition: 0.4s;
+    z-index: 5;
+
+    &:hover {
+      transform: translateX(-0.5rem);
+      color: #6f8efa;
     }
   }
 }

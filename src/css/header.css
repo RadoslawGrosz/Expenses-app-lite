@@ -34,7 +34,7 @@
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  height: 4vmin;
+  height: 3rem;
   border-radius: 0.5rem;
   padding: 0 1.2rem;
   text-transform: uppercase;
