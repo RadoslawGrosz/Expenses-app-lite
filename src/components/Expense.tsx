@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import ExpenseApi from "../api/ExpenseApi";
 import { editExpense } from "../store/expensesSlice";
 import { Expense as ExpenseType, StatusEnum } from "../types/Expense";
+import { useAppDispatch } from "../store/store";
 
 interface Props {
   expense: ExpenseType;
@@ -22,7 +21,7 @@ const Expense: React.FC<Props> = ({
   setChosenExpense,
 }) => {
   const [styles, setStyles] = useState<Styles>();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleEditExpense = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

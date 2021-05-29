@@ -30,6 +30,7 @@ const FiltersSection: React.FC = () => {
             <input
               type="number"
               className="filters-section__filters-list__item__value__input"
+              data-cy="filter-min-amount"
               onChange={(e) => dispatch(setMinAmount(parseInt(e.target.value)))}
             />
             <FontAwesomeIcon icon={faDollarSign} />
@@ -43,6 +44,7 @@ const FiltersSection: React.FC = () => {
             <input
               type="number"
               className="filters-section__filters-list__item__value__input"
+              data-cy="filter-max-amount"
               onChange={(e) => dispatch(setMaxAmount(parseInt(e.target.value)))}
             />
             <FontAwesomeIcon icon={faDollarSign} />
@@ -59,6 +61,7 @@ const FiltersSection: React.FC = () => {
             <select
               name="status"
               className="filters-section__filters-list__item__value__input"
+              data-cy="filter-status"
               onChange={handleStatusChange}
             >
               <option value={StatusEnum.All}>Wszystkie</option>
@@ -75,6 +78,7 @@ const FiltersSection: React.FC = () => {
             <input
               type="text"
               className="filters-section__filters-list__item__value__input"
+              data-cy="filter-name"
               onChange={(e) => dispatch(setText(e.target.value))}
               maxLength={25}
             />

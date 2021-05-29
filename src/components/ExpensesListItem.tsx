@@ -61,6 +61,7 @@ const ExpensesListItem: React.FC<Props> = ({
         <select
           name="status"
           className="main-section__list__item__value__status main-section__list__item__value__status--draft"
+          data-cy="expense-status"
           value={status}
           onChange={(e) => handleEditExpense(e.target.value as StatusEnum)}
         >
@@ -70,6 +71,7 @@ const ExpensesListItem: React.FC<Props> = ({
       </div>
       <button
         className="main-section__list__item__value main-section__list__item__value--remove"
+        data-cy="expense-remove"
         onClick={() => dispatch(removeExpense(id))}
       >
         <FontAwesomeIcon icon={faTrash} />
