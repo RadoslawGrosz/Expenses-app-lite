@@ -28,6 +28,24 @@ describe("The Home Page", () => {
     cy.get(".main-section__list").children().should("have.length", 7);
   });
 
+  const newExpenseName = "test";
+  const newExpenseDate = "2021-01-01";
+  const newExpenseAmount = 1000;
+  const newExpenseStatus = "partly-paid";
+
+  it("adds new expense", () => {
+    cy.get("[data-cy=add-button]").click();
+    cy.get("[data-cy=new-expense-name]").type(newExpenseName);
+    cy.get("[data-cy=new-expense-date]").type(newExpenseDate);
+    cy.get("[data-cy=new-expense-amount]").type(newExpenseAmount);
+    cy.get("[data-cy=new-expense-status]").select(newExpenseStatus);
+    cy.get("[data-cy=new-expense-submit]").click();
+
+    cy.contains(".main-section__list__item__value", newExpenseDate);
+    cy.contains(".main-section__list__item__value", newExpenseAmount);
+    cy.contains(".main-section__list__item__value", newExpenseName);
+  });
+
   it("filters expenses by min amount", () => {
     cy.get("[data-cy=filter-min-amount]").type(85000);
     cy.get(".main-section__list__item__value").contains("Zakup samochodu");
@@ -49,10 +67,10 @@ describe("The Home Page", () => {
     cy.get("[data-cy=filter-status]").select("partly-paid");
     cy.get("[data-cy=expense-status]").should("have.value", "partly-paid");
     cy.get("[data-cy=expense-status]").should("not.have.value", "paid");
-    cy.get(".main-section__list").children().should("have.length", 3);
+    cy.get(".main-section__list").children().should("have.length", 4);
 
     cy.get("[data-cy=filter-status]").select("all");
-    cy.get(".main-section__list").children().should("have.length", 7);
+    cy.get(".main-section__list").children().should("have.length", 8);
   });
 
   it("filters expenses by name", () => {
@@ -61,20 +79,14 @@ describe("The Home Page", () => {
     cy.get("[data-cy=filter-name]").clear();
   });
 
-  // it("adds new expense", () => {
-  //   const newExpenseName = "test";
-  //   const newExpenseDate = "2021-01-01";
-  //   const newExpenseAmount = 1000;
-
-  //   cy.get("[data-cy=add-button]").click();
-  //   cy.get("[data-cy=new-expense-name]").type(newExpenseName);
-  //   cy.get("[data-cy=new-expense-date]").type(newExpenseDate);
-  //   cy.get("[data-cy=new-expense-amount]").type(newExpenseAmount);
-  //   cy.get("[data-cy=new-expense-submit]").click();
-
-  //   cy.get(".main-section__list__item__value").contains(newExpenseName);
-  //   // .parent()
-  //   // .contains("[data-cy=expense-remove]");
-  //   // cy.get(".main-section__list__item__value").contains(newExpenseDate);
-  // });
+  it("removes expense", () => {
+    cy.contains(".main-section__list__item__value", newExpenseName)
+      .parent()
+      .children("[data-cy=expense-remove]")
+      .click();
+    cy.get(".main-section__list__item__value").should(
+      "not.have.value",
+      newExpenseName
+    );
+  });
 });
