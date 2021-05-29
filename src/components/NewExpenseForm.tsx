@@ -28,10 +28,8 @@ const NewExpenseForm: React.FC<Props> = ({ setIsNewExpenseFormVisible }) => {
       url: "",
     },
   });
-  const [
-    newExpenseImageStyles,
-    setNewExpenseImageStyles,
-  ] = useState<NewExpenseImageStyles>({ backgroundImage: "" });
+  const [newExpenseImageStyles, setNewExpenseImageStyles] =
+    useState<NewExpenseImageStyles>({ backgroundImage: "" });
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -97,6 +95,7 @@ const NewExpenseForm: React.FC<Props> = ({ setIsNewExpenseFormVisible }) => {
       <input
         type="text"
         className="main-section__list__item__value main-section__list__item__value--new"
+        data-cy="new-expense-name"
         value={newExpense.name}
         onChange={(e) =>
           setNewExpense((prev) => ({ ...prev, name: e.target.value }))
@@ -108,6 +107,7 @@ const NewExpenseForm: React.FC<Props> = ({ setIsNewExpenseFormVisible }) => {
       <input
         type="date"
         className="main-section__list__item__value main-section__list__item__value--new"
+        data-cy="new-expense-date"
         value={newExpense.date}
         onChange={(e) =>
           setNewExpense((prev) => ({ ...prev, date: e.target.value }))
@@ -117,6 +117,7 @@ const NewExpenseForm: React.FC<Props> = ({ setIsNewExpenseFormVisible }) => {
       <input
         type="number"
         className="main-section__list__item__value main-section__list__item__value--new"
+        data-cy="new-expense-amount"
         value={newExpense.amount}
         onChange={(e) =>
           setNewExpense((prev) => ({
@@ -131,6 +132,7 @@ const NewExpenseForm: React.FC<Props> = ({ setIsNewExpenseFormVisible }) => {
           name="file"
           id="file"
           className="main-section__list__item__value__input-file"
+          data-cy="new-expense-image"
           onChange={handleImageChoose}
         />
         {newExpenseImageStyles.backgroundImage && (
@@ -154,6 +156,7 @@ const NewExpenseForm: React.FC<Props> = ({ setIsNewExpenseFormVisible }) => {
         <select
           name="status"
           className="main-section__list__item__value__status main-section__list__item__value__status--draft"
+          data-cy="new-expense-status"
           value={newExpense.status}
           onChange={(e) =>
             setNewExpense((prev) => ({
@@ -168,6 +171,7 @@ const NewExpenseForm: React.FC<Props> = ({ setIsNewExpenseFormVisible }) => {
       </div>
       <button
         className="main-section__list__item__value main-section__list__item__value--add"
+        data-cy="new-expense-submit"
         type="submit"
       >
         <FontAwesomeIcon icon={faCheck} />

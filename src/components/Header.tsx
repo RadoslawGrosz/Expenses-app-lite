@@ -27,6 +27,7 @@ const Header: React.FC<Props> = ({
         <li className="site-header__list__item">
           <button
             className="site-header__list__item__link site-header__list__item__link--add"
+            data-cy="add-button"
             onClick={() => setIsNewExpenseFormVisible(!isNewExpenseFormVisible)}
           >
             <FontAwesomeIcon
@@ -37,7 +38,10 @@ const Header: React.FC<Props> = ({
           </button>
         </li>
         <li className="site-header__list__item">
-          <button className="site-header__list__item__link site-header__list__item__link--login">
+          <button
+            className="site-header__list__item__link site-header__list__item__link--login"
+            data-cy="logout-button"
+          >
             <FontAwesomeIcon
               icon={faSignOutAlt}
               className="site-header__list__item__link__icon site-header__list__item__link__icon--login"
